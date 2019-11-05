@@ -1,0 +1,23 @@
+html
+  head
+      link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+
+  body
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand(href='#') Admin
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item.active
+              a.nav-link(href='/')
+                | Home 
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/users') User
+            li.nav-item
+              a.nav-link(href='/product') Product
+        if user
+          p= user.name
+      .container.pt-5
+        block content

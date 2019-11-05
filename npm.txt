@@ -1,0 +1,27 @@
+// express server
+https://expressjs.com/en/starter/hello-world.html
+npm install express --save
+var express = require('express');
+//pug enigner teamplate
+https://pugjs.org/language/iteration.html
+npm install pug --save
+app.set('view engine','pug');
+app.set('views','./views');
+// npm body parser
+https://expressjs.com/en/5x/api.html#req.body
+npm install body-parser --save
+var bodyParser = require('body-parser')
+app.use(bodyParser.json()) 
+app.use(bodyParser.urlencoded({ extended: true })) 
+//npm nodemon
+https://www.npmjs.com/package/nodemon
+npm install --save-dev nodemon
+"scripts": {
+    "start":"nodemon index.js",
+ npm start
+//npm lowdb
+https://github.com/typicode/lowdb
+npm install lowdb --save
+
+
+
