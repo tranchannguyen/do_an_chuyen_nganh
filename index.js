@@ -1,11 +1,25 @@
 require('dotenv').config();
-console.log(process.env.SESSION_SECRECT);
+
 var express = require('express');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true,useUnifiedTopology: true}).then(
+   () => {
+      console.log("connet DB success");
+      
+   },
+   err => {
+      console.log("connet fails .Error :${err}");
+   }
+   );
+
+
 var userRoute = require('./routes/user.route')
+var adminRoute = require('./routes/admin.route')
 var authRoute = require('./routes/auth.route')
-var prodRoute = require('./routes/product.route')
+// var prodRoute = require('./routes/product.route')
 var authMidleware = require('./midlewares/auth.midleware.js')
 var app = express();
 var port = 3000;
@@ -21,8 +35,9 @@ app. get('/',function(req,res){
    res.render('index');
 });
 
-app.use('/product',authMidleware.requireAuth,prodRoute);
-app.use('/users',authMidleware.requireAuth,userRoute);
+app.use('/admin',adminRoute);
+// app.use('/product',authMidleware.requireAuth,prodRoute);
+app.use('/admin/users',userRoute);
 app.use('/auth',authRoute);
 app.listen(3000,function(){
 	console.log('Server listening on port 3000');

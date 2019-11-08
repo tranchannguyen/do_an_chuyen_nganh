@@ -1,0 +1,22 @@
+extends ../layouts/commit
+block content
+		h1 Danh sách user
+		.d-flex.align-items-center
+			a.btn.btn-success.mt-5.mb-5(href="/users/create") Create
+
+			form.ml-auto(action="/users/Search",menthod ="GET",class= "d-flex") 
+				input(type="text",name="q",class="form-control ")
+				button(class="btn btn-primary ml-2") Search
+		table.table
+			tr
+				th Name
+				th Phone
+				th Action
+
+			each user in users
+				tr
+					td= user.name
+					td= user.phone
+
+					td
+						a.btn.btn-info(href='/users/'+user.id) View

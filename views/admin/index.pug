@@ -1,0 +1,16 @@
+extends ../layouts/commit
+block content
+
+    if user
+        h1 Chào quản trị viên #{user.name} !
+    else
+        h1 Chào mừng đến trang quản trị
+        h2 Vui lòng đăng nhập 
+        p.mt-5 Nhấp vào đây để đăng nhập:
+        button.btn.btn-info.ml-5.btn-lg.mb-5
+            a(href='/auth/login') Đăng nhập
+        p hoặc vào đây để đăng ký và đợi cấp quyền: 
+        button.btn.btn-primary.btn-lg.ml-5
+            a(href='#')|    Đăng ký  
+
+    
