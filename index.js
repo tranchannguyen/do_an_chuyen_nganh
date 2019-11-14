@@ -37,8 +37,8 @@ app. get('/',function(req,res){
 
 app.use('/admin',adminRoute);
 // app.use('/product',authMidleware.requireAuth,prodRoute);
-app.use('/admin/users',userRoute);
+app.use('/users',userRoute);
 app.use('/auth',authRoute);
-app.listen(3000,function(){
+app.listen(port,function(){
 	console.log('Server listening on port 3000');
 });
