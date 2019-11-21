@@ -4,6 +4,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path')
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true,useUnifiedTopology: true}).then(
    () => {
@@ -15,7 +16,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true,useUnifiedTopolo
    }
    );
 
-
+var productRoute  = require('./routes/product.route')
 var userRoute = require('./routes/user.route')
 var adminRoute = require('./routes/admin.route')
 var authRoute = require('./routes/auth.route')
@@ -30,6 +31,8 @@ app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(express.static('public'));
 app.use(cookieParser(process.env.SESSION_SECRECT));
+app.use('/users/edits', express.static(path.join(__dirname, 'public')))
+app.use('/users', express.static(path.join(__dirname, 'public')))
 
 app. get('/',function(req,res){
    res.render('index');
@@ -38,6 +41,7 @@ app. get('/',function(req,res){
 app.use('/admin',adminRoute);
 // app.use('/product',authMidleware.requireAuth,prodRoute);
 app.use('/users',userRoute);
+app.use('/products',productRoute);
 app.use('/auth',authRoute);
 app.listen(port,function(){
 	console.log('Server listening on port 3000');

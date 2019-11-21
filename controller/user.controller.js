@@ -1,9 +1,18 @@
 var User = require('../models/user.model');
 // var shortid = require('shortid');
-
+var md5 = require('md5');
 module.exports.index = async function(req,res){
+
+	var page = parseInt(req.query.page);
+	var perpage = 5;
+	var drop =( page - 1 )*perpage;
+	let arr = [];
 	var users = await User.find();
-	res.render('users/index',{ users: users });	
+	
+	res.render('users/index',{
+		 users: users,
+		 page: page,
+	 });	
 }
 module.exports.search = async function(req,res){
 	var q = req.query.q;
@@ -16,13 +25,23 @@ module.exports.search = async function(req,res){
 module.exports.create = function(req,res){
 	res.render('users/create');
 }
-module.exports.get = function(req,res){
+module.exports.get =async function(req,res){
 	var id = req.params.id;
-	var users = User.find({_id: id});
+	var users = await User.find({_id: id});
+	console.log(users);
 	res.render('users/detailUser',
 		{ users: users });
 }
+module.exports.edit =async function(req,res){
+	var id = req.params.id;
+	var users = await User.find({_id: id});
+	console.log(users);
+	res.render('users/edit',
+		{ users: users });
+}
 module.exports.postCreate = async function(req,res){
+	req.body.password = md5(req.body.password);
+	req.body.admin = Boolean(req.body.admin);
 	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
 	console.log(req.body);
 	await User.insertMany(req.body);

@@ -1,0 +1,40 @@
+extends ../layouts/commit
+block content
+    #page-wrapper(style='min-height: 616px;')
+        .main-page
+            .forms
+                .row
+                    h3.title1 Thông tin user
+                    .form-three.widget-shadow
+                        form.form-horizontal
+                            each user in users
+                                .form-group
+                                    label.col-sm-2.control-label(for="avatar") Avatar
+                                    .col-sm-1
+                                    img.border.border-success.rounded-lg(src=user.avatar, width="194",height ="194")
+                                .form-group
+                                    label.col-sm-2.control-label(for="name") Full Name 
+                                    .col-sm-5
+                                        input#name.form-control.input-sm( type="text",name="name",placeholder = user.name)
+                                .form-group
+                                    label.col-sm-2.control-label(for="phone") Phone
+                                    .col-sm-5
+                                        input#phone.form-control(type="text",name="phone",placeholder = user.phone)
+                                .form-group
+                                    label.col-sm-2.control-label(for="email") Email
+                                    .col-sm-5
+                                        input#email.form-control(type="email",name="email",placeholder = user.email)
+                                .form-group
+                                    label.col-sm-2.control-label(for="address") Address
+                                    .col-sm-5
+                                        input#address.form-control(type="text",name="address", placeholder = user.address)
+                        
+                                .form-group
+                                    .col-sm-offset-2.col-sm-10
+                                       .checkbox
+                                            label
+                                                input(disanle type='checkbox',name="admin",value = "1")
+                                                |  Master
+                                .col-sm-offset-2
+                                    .btn.btn-success(type='summit') Save
+                            a.btn.btn-primary(href='/users') Quay lại
