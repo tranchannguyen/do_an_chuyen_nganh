@@ -20,5 +20,7 @@ router.post('/create',
 	validate.postCreate,
 	userController.postCreate
 	);
+router.post('/edits/:id',userController.putEdit)
+router.get('/:id/delete',userController.deleteUser)
 module.exports = router;
 

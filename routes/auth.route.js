@@ -1,6 +1,4 @@
 var express = require('express');
-
-var db = require('../db')
 var authController = require('../controller/auth.controller.js')
 var router = express.Router()
 

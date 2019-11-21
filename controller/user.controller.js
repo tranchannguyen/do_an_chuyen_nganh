@@ -3,15 +3,10 @@ var User = require('../models/user.model');
 var md5 = require('md5');
 module.exports.index = async function(req,res){
 
-	var page = parseInt(req.query.page);
-	var perpage = 5;
-	var drop =( page - 1 )*perpage;
-	let arr = [];
 	var users = await User.find();
 	
 	res.render('users/index',{
-		 users: users,
-		 page: page,
+		 users: users
 	 });	
 }
 module.exports.search = async function(req,res){
@@ -46,4 +41,24 @@ module.exports.postCreate = async function(req,res){
 	console.log(req.body);
 	await User.insertMany(req.body);
 	res.redirect('/users');
+}
+module.exports.putEdit = async function(req,res){
+	await User.findByIdAndUpdate({_id:req.params.id},{
+		name:req.body.name,
+		email:req.body.email,
+		phone:req.body.phone,
+		address:req.body.address,
+		admin:Boolean(req.body.admin),
+		update_time : new Date()
+	},function(err){
+		if(err)	res.json(err);
+		else	res.redirect('/users/'+req.params.id);
+	})
+}
+module.exports.deleteUser = async function(req,res){
+	await User.remove({_id:req.params.id},function(err){
+		if(err) res.json(err);
+		else	res.redirect('/users');
+	});
+
 }
