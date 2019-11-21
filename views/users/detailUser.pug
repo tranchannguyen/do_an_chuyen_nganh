@@ -1,0 +1,51 @@
+extends ../layouts/commit
+block content
+    #page-wrapper(style='min-height: 616px;')
+        .main-page
+            .forms
+                .row
+                    h3.title1 Thông tin user
+                    .form-three.widget-shadow
+                        form.form-horizontal
+                            each user in users
+                                .form-group
+                                    label.col-sm-2.control-label(for="avatar") Avatar
+                                    .col-sm-1
+                                    img.border.border-success.rounded-lg(src=user.avatar, width="194",height ="194")
+                                .form-group
+                                    label.col-sm-2.control-label(for="name") Full Name 
+                                    .col-sm-5
+                                        input#name.form-control.input-sm(disabled='', type="text",name="name",placeholder = user.name)
+                                .form-group
+                                    label.col-sm-2.control-label(for="phone") Phone
+                                    .col-sm-5
+                                        input#phone.form-control(disabled='',type="text",name="phone",placeholder = user.phone)
+                                .form-group
+                                    label.col-sm-2.control-label(for="email") Email
+                                    .col-sm-5
+                                        input#email.form-control(disabled='',type="email",name="email",placeholder = user.email)
+                                .form-group
+                                    label.col-sm-2.control-label(for="password") Password
+                                    .col-sm-5
+                                        input#password.form-control(disabled='',type="password",name="password", placeholder = user.password)
+                                .form-group
+                                    label.col-sm-2.control-label(for="address") Address
+                                    .col-sm-5
+                                        input#address.form-control(disabled='',type="text",name="address", placeholder = user.address)
+                                if(user.admin==true)
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disabled='',disanle type='checkbox',name="admin",checked="" )
+                                                    |  Master
+                                else
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disabled='',disanle type='checkbox',name="admin",checked="" )
+                                                    |  Admin 
+                                .col-sm-offset-2
+                                    a.btn.btn-danger(href='/users/edits/'+user.id) Edit
+                            a.btn.btn-primary(href='/users') Quay lại
