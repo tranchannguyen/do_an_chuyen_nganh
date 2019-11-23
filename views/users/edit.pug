@@ -4,10 +4,11 @@ block content
         .main-page
             .forms
                 .row
-                    h3.title1 Thông tin user
-                    .form-three.widget-shadow
-                        form.form-horizontal
-                            each user in users
+                    each user in users                    
+                        h3.title1 Thông tin #{user.name}
+                        .form-three.widget-shadow
+                            form.form-horizontal(method='POST',action="/users/edits/"+user.id)
+                                input(type='hidden',name='_menthod',value="PUT")
                                 .form-group
                                     label.col-sm-2.control-label(for="avatar") Avatar
                                     .col-sm-1
@@ -15,26 +16,45 @@ block content
                                 .form-group
                                     label.col-sm-2.control-label(for="name") Full Name 
                                     .col-sm-5
-                                        input#name.form-control.input-sm( type="text",name="name",placeholder = user.name)
+                                        input#name.form-control.input-sm( type="text",name="name",value = user.name)
                                 .form-group
                                     label.col-sm-2.control-label(for="phone") Phone
                                     .col-sm-5
-                                        input#phone.form-control(type="text",name="phone",placeholder = user.phone)
+                                        input#phone.form-control(type="text",name="phone",value = user.phone)
                                 .form-group
                                     label.col-sm-2.control-label(for="email") Email
                                     .col-sm-5
-                                        input#email.form-control(type="email",name="email",placeholder = user.email)
+                                        input#email.form-control(type="email",name="email",value = user.email)
                                 .form-group
                                     label.col-sm-2.control-label(for="address") Address
                                     .col-sm-5
-                                        input#address.form-control(type="text",name="address", placeholder = user.address)
-                        
-                                .form-group
-                                    .col-sm-offset-2.col-sm-10
-                                       .checkbox
-                                            label
-                                                input(disanle type='checkbox',name="admin",value = "1")
-                                                |  Master
+                                        input#address.form-control(type="text",name="address", value = user.address)
+                            
+                                if(user.admin==true)
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disanle type='checkbox',name="admin",value="1",checked="" )
+                                                    |  Master
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disanle type='checkbox',value="0",name="admin" )
+                                                    |  Admin
+                                else
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disanle type='checkbox',value="1",name="admin"
+                                                     )
+                                                    |  Master
+                                        .col-sm-offset-2.col-sm-10
+                                            .checkbox
+                                                label
+                                                    input(disanle type='checkbox',name="admin",value="0",checked="" )
+                                                    |  Admin 
                                 .col-sm-offset-2
-                                    .btn.btn-success(type='summit') Save
-                            a.btn.btn-primary(href='/users') Quay lại
+                                        button.btn.btn-success(type='submit') Save
+                        a.btn.btn-primary(href='/users') Quay lại

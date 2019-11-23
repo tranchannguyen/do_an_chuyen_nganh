@@ -1,18 +1,35 @@
 extends ../layouts/commit
 
 block content
+	#page-wrapper
+		.main-page.login-page
+			.widget-shadow
+				.login-body
+					h2.title1 Login
+					if errors
+						each error in errors
+							.alert.alert-danger= error
+					form(action='/auth/login', method="POST")
+						input.user(type='email', name='email', placeholder='Enter Your Email', value = value ? values.email : "")
+						input.lock(type='password', name='password', placeholder='Password', value = value ? values.pasword : "")
+						.forgot-grid
+							.forgot
+								a(href='#') Forgot password?
+							.clearfix  
+						input(type='submit',value='Sign In')
+						.registration
+							| Don&apos;t have an account ?
+							a(href='signup.html')| Create an account
 
-	h1 Đăng nhập
-	if errors
-		each error in errors
-			.alert.alert-danger= error
+	//- h1 Đăng nhập
 
-	form(method="POST")
-		.form-group
-		label(for="email") Email
-		input#email.form-control(type="text",name="email",value = value ? values.email : "")
-		.form-group
-		label(for="password") Password
-		input#password.form-control(type="password",name="password",value = value ? values.phone : "")
 
-		button.btn.btn-success.mt-5 Login
+	//- form(method="POST")
+	//- 	.form-group
+	//- 	label(for="email") Email
+	//- 	input#email.form-control(type="text",name="email",value = value ? values.email : "")
+	//- 	.form-group
+	//- 	label(for="password") Password
+	//- 	input#password.form-control(type="password",name="password",value = value ? values.phone : "")
+
+	//- 	button.btn.btn-success.mt-5 Login

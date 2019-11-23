@@ -107,20 +107,20 @@ html
               #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.sidebar-menu
                   li.header MAIN NAVIGATION
-                  li.treeview
-                    a(href='#')
-                      i.fa.fa-edit
-                      span Quản lý admin users
-                      i.fa.fa-angle-left.pull-right
-                    ul.treeview-menu
-                      li
-                        a(href='/users')
-                          i.fa.fa-angle-right
-                          |  Danh sách users
-                      li
-                        a(href='/users/create')
-                          i.fa.fa-angle-right
-                          |  Thêm admin
+                    li.treeview
+                      a(href='#')
+                        i.fa.fa-edit
+                        span Quản lý admin users
+                        i.fa.fa-angle-left.pull-right
+                      ul.treeview-menu
+                        li
+                          a(href='/users')
+                            i.fa.fa-angle-right
+                            |  Danh sách users
+                        li
+                          a(href='/users/create')
+                            i.fa.fa-angle-right
+                            |  Thêm admin
                   li.treeview
                     a(href='#')
                       i.fa.fa-folder-open-o
@@ -189,27 +189,28 @@ html
             .clearfix  
           .header-right
             .profile_details
-              ul
-                li.dropdown.profile_details_drop
-                  a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
-                    .profile_img
-                      span.prfil-img
-                        img(src='/images/2.jpg', alt='')
-                      .user-name
-                        p Admin Name
-                        span Administrator
-                      i.fa.fa-angle-down.lnr
-                      i.fa.fa-angle-up.lnr
-                      .clearfix
-                  ul.dropdown-menu.drp-mnu
-                    li
-                      a(href='#')
-                        i.fa.fa-user
-                        |  My Account
-                    li
-                      a(href='#')
-                        i.fa.fa-sign-out
-                        |  Logout
+              if user
+                ul
+                  li.dropdown.profile_details_drop
+                    a.dropdown-toggle(href='#', data-toggle='dropdown', aria-expanded='false')
+                      .profile_img
+                        span.prfil-img
+                          img(src=user.avatar, alt='',width=32,height=32)
+                        .user-name
+                          p= user.name
+                          
+                        i.fa.fa-angle-down.lnr
+                        i.fa.fa-angle-up.lnr
+                        .clearfix
+                    ul.dropdown-menu.drp-mnu
+                      li
+                        a(href='#')
+                          i.fa.fa-user
+                          |  My Account
+                      li
+                        a(href='/auth/logout',onclick="return confirm('Bạn có muốn thoát không ?')")
+                          i.fa.fa-sign-out
+                          |  Logout
             .clearfix  
           .clearfix  
         // //header-ends
