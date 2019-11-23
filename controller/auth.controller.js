@@ -1,11 +1,17 @@
 var User = require('../models/user.model')
 var md5 = require('md5')
+var mongo = require('mongodb').MongoClient;
+var objectId  = require('mongodb').ObjectId;
 module.exports.login = 	function(req,res){
 	if(req.signedCookies.userId)
 	{
 		res.redirect('/users');
 		return;
 	}
+	res.render('auth/login');	
+}
+module.exports.logout = function(req,res){
+	res.clearCookie('userEmail')
 	res.render('auth/login');	
 }
 module.exports.postlogin = async function(req,res,next){
@@ -29,6 +35,8 @@ module.exports.postlogin = async function(req,res,next){
 		});
 		return;
 	}
-	res.cookie('userId',users._id,{signed:true});
+	console.log(users[0]._id)
+
+	res.cookie('userEmail',users[0].email,{signed:true});
 	res.redirect('/users');
 }

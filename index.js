@@ -43,7 +43,7 @@ app. get('/',function(req,res){
 
 
 // app.use('/product',authMidleware.requireAuth,prodRoute);
-app.use('/users',userRoute);
+app.use('/users',authMidleware.requireAuth,userRoute);
 app.use('/products',productRoute);
 app.use('/auth',authRoute);
 app.listen(port,function(){

@@ -4,7 +4,6 @@ var md5 = require('md5');
 module.exports.index = async function(req,res){
 
 	var users = await User.find();
-	
 	res.render('users/index',{
 		 users: users
 	 });	
