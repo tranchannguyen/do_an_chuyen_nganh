@@ -58,9 +58,11 @@ module.exports.putEdit = async function(req,res){
 	})
 }
 module.exports.deleteUser = async function(req,res){
-	await User.remove({_id:req.params.id},function(err){
+
+		await User.remove({_id:req.params.id},function(err){
 		if(err) res.json(err);
 		else	res.redirect('/users');
 	});
+	
 
 }

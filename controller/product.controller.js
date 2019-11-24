@@ -6,6 +6,13 @@ module.exports.index = async function(req,res){
 	res.render('products/index',{ products: products
 	 });	
 }
+module.exports.deleteProduct = async function(req,res){
+
+	await Product.remove({_id:req.params.id},function(err){
+	if(err) res.json(err);
+	else	res.redirect('/products');
+});
+}
 // module.exports.search = async function(req,res){
 // 	var q = req.query.q;
 // 	var matcheUser = await User.find();
@@ -17,12 +24,12 @@ module.exports.index = async function(req,res){
 module.exports.create = function(req,res){
 	res.render('products/create');
 }
-// module.exports.get = function(req,res){
-// 	var id = req.params.id;
-// 	var users = User.find({_id: id});
-// 	res.render('users/detailUser',
-// 		{ users: users });
-// }
+module.exports.get = async function(req,res){
+	var id = req.params.id;
+	var products = await Product.find({_id: id});
+	res.render('products/detailProduct',
+		{ products: products });
+}
 module.exports.postCreate = async function(req,res){
 	
 	req.body.pro_image = req.file.path.split('\\').slice(1).join('/');

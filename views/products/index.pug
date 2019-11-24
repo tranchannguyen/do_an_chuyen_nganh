@@ -14,6 +14,7 @@ block content
 								tr
 									th Product Img
 									th Product Name
+									th So luong
 									th Action
 							tbody
 							each product in products
@@ -22,10 +23,16 @@ block content
 										img.border.border-success.rounded-lg(src=product.pro_image, width="72",height ="72")
 									td
 										p(text-align='center')= product.name
+									if(product.status == true)
+										td
+											p(text-align='center')= product.quantity
+									else
+										td
+											p.btn.btn-danger(text-align='center') Het hang
 									td
-										a.btn.btn-primary(href='/users/'+user._id) View
+										a.btn.btn-primary(href="/products/"+product.id) View
 										span 
-										a.btn.btn-warning(href='/users/edits/'+user._id) Edit
+										a.btn.btn-warning(href="#") Edit
 										span 
-										a.btn.btn-danger(href='/auth/logout',onclick="return confirm('Bạn có muốn đăng xuat không ?')") Delete
+										a.btn.btn-danger(href="/products/"+product.id+"/delete",onclick="return confirm('Bạn có muốn xoa không ?')") Delete
 						

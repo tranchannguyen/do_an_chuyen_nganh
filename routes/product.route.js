@@ -18,11 +18,7 @@ router.post('/create',
 	validate.postCreate,
 	productController.postCreate
 	);
-// router.get('/:id',productController.get);
-// router.post('/create',
-// 	upload.single('avatar'),
-// 	// validate.postCreate,
-// 	productController.postCreate
-// 	);
+router.get('/:id',productController.get);
+router.get('/:id/delete',productController.deleteProduct)
 module.exports = router;
 

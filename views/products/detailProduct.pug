@@ -1,0 +1,44 @@
+extends ../layouts/commit
+block content
+    #page-wrapper(style='min-height: 616px;')
+        .main-page
+            .forms
+                .row
+                    h3.title1 Thông tin product
+                    .form-three.widget-shadow
+                        form.form-horizontal
+                            each product in products
+                                .form-group
+                                    label.col-sm-2.control-label(for="avatar") Anh san pham
+                                    .col-sm-1
+                                    img.border.border-success.rounded-lg(src= product.pro_image, width="194",height ="194")
+                                .form-group
+                                    label.col-sm-2.control-label(for="name") Product Name 
+                                    .col-sm-5
+                                        input#name.form-control.input-sm(disabled='', type="text",name="name",value = product.name)
+                                .form-group
+                                    label.col-sm-2.control-label(for="price") Gia
+                                    .col-sm-5
+                                        input#price.form-control(disabled='',type="number",name="price",value = product.price)
+                                .form-group
+                                    label.col-sm-2.control-label(for="quantity") So luong
+                                    .col-sm-5
+                                        input#quantity.form-control(disabled='',type="number",name="quantity",value= product.quantity)
+                                .form-group
+                                    label.col-sm-2.control-label(for="decription") Mo ta
+                                    .col-sm-5
+                                        input#decription.form-control(disabled='',type="text",name="decription", value = product.decription)
+                                if(product.status == true)
+                                    .form-group
+                                        label.col-sm-2.control-label(for="status") Trang thai
+                                        .col-sm-5
+                                            p.btn.btn-success Con hang
+                                else 
+                                    .form-group
+                                        label.col-sm-2.control-label(for="status") Trang thai
+                                        .col-sm-5
+                                            p.btn.btn-danger Het hang
+                
+                                .col-sm-offset-2
+                                    a.btn.btn-warning(href='/products/edits/'+product.id) Edit
+                            a.btn.btn-primary(href='/products') Quay lại
