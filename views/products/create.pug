@@ -12,7 +12,7 @@ block content
 							if errors
 								each error in errors
 									.alert.alert-danger= error
-							form.form-horizontal(action="/users/create",method="POST", enctype="multipart/form-data")
+							form.form-horizontal(action="/products/create",method="POST", enctype="multipart/form-data")
 								.form-group
 									label.col-sm-2.control-label(for="name") Name product
 									.col-sm-9
@@ -20,11 +20,11 @@ block content
 								.form-group
 									label.col-sm-2.control-label(for="price") Price
 									.col-sm-9
-										input#price.form-control(type="text",name="price")
+										input#price.form-control(type="number",name="price")
 								.form-group
 									label.col-sm-2.control-label(for="quantity") Quantity
 									.col-sm-9
-										input#quantity.form-control(type="text",name="quantity")
+										input#quantity.form-control(type="number",name="quantity")
 								.form-group
 									label.col-sm-2.control-label(for="decription") Decription
 									.col-sm-9

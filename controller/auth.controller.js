@@ -3,7 +3,7 @@ var md5 = require('md5')
 var mongo = require('mongodb').MongoClient;
 var objectId  = require('mongodb').ObjectId;
 module.exports.login = 	function(req,res){
-	if(req.signedCookies.userId)
+	if(req.signedCookies.userEmail)
 	{
 		res.redirect('/users');
 		return;
@@ -38,5 +38,8 @@ module.exports.postlogin = async function(req,res,next){
 	console.log(users[0]._id)
 
 	res.cookie('userEmail',users[0].email,{signed:true});
-	res.redirect('/users');
+	if(users[0].admin == true){
+		res.redirect('/users');
+	}else res.redirect('/products');
+	
 }

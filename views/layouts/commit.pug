@@ -107,20 +107,23 @@ html
               #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.sidebar-menu
                   li.header MAIN NAVIGATION
-                    li.treeview
-                      a(href='#')
-                        i.fa.fa-edit
-                        span Quản lý admin users
-                        i.fa.fa-angle-left.pull-right
-                      ul.treeview-menu
-                        li
-                          a(href='/users')
-                            i.fa.fa-angle-right
-                            |  Danh sách users
-                        li
-                          a(href='/users/create')
-                            i.fa.fa-angle-right
-                            |  Thêm admin
+                    if user
+                      foreach user 
+                        if(user.admin == true)
+                          li.treeview
+                            a(href='#')
+                              i.fa.fa-edit
+                              span Quản lý admin users
+                              i.fa.fa-angle-left.pull-right
+                            ul.treeview-menu
+                              li
+                                a(href='/users')
+                                  i.fa.fa-angle-right
+                                  |  Danh sách users
+                              li
+                                a(href='/users/create')
+                                  i.fa.fa-angle-right
+                                  |  Thêm admin
                   li.treeview
                     a(href='#')
                       i.fa.fa-folder-open-o
@@ -143,7 +146,7 @@ html
                       i.fa.fa-angle-left.pull-right
                     ul.treeview-menu
                       li
-                        a(href='tables.html')
+                        a(href='/products')
                           i.fa.fa-angle-right
                           |  Danh sách sản phẩm
                     ul.treeview-menu
