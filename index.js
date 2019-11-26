@@ -38,6 +38,7 @@ app.use(cookieParser(process.env.SESSION_SECRECT));
 app.use('/users/edits', express.static(path.join(__dirname, 'public')))
 app.use('/users', express.static(path.join(__dirname, 'public')))
 app.use('/products', express.static(path.join(__dirname, 'public')))
+app.use('/products/edits', express.static(path.join(__dirname, 'public')))
 
 app. get('/',function(req,res){
    res.render('index');

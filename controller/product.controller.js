@@ -8,7 +8,7 @@ module.exports.index = async function(req,res){
 }
 module.exports.deleteProduct = async function(req,res){
 
-	await Product.remove({_id:req.params.id},function(err){
+	await Product.remove({_id: req.params.id},function(err){
 	if(err) res.json(err);
 	else	res.redirect('/products');
 });
@@ -21,6 +21,25 @@ module.exports.deleteProduct = async function(req,res){
 // 	});
 //     res.render('users/index',{ users: users });
 // }
+module.exports.edit =async function(req,res){
+	var id = req.params.id;
+	var products = await Product.find({_id: id});
+	res.render('products/edit',
+		{ products: products });
+}
+module.exports.postEdit = async function(req,res){
+	await Product.findByIdAndUpdate({_id:req.params.id},{
+		name:req.body.name,
+		price:req.body.price,
+		quantity:req.body.quantity,
+		decription:req.body.decription,
+		status:req.body.status,
+		update_time : new Date()
+	},function(err){
+		if(err)	res.json(err);
+		else	res.redirect('/products/'+req.params.id);
+	})
+}
 module.exports.create = function(req,res){
 	res.render('products/create');
 }
