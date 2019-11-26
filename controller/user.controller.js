@@ -2,11 +2,14 @@ var User = require('../models/user.model');
 // var shortid = require('shortid');
 var md5 = require('md5');
 module.exports.index = async function(req,res){
-
-	var users = await User.find();
-	res.render('users/index',{
+	var userlogin = await User.find({email: req.signedCookies.userEmail})
+	var authAdmin = userlogin[0];
+	if(authAdmin.admin == true){
+		var users = await User.find();
+		res.render('users/index',{
 		 users: users
-	 });	
+	 });
+	}else res.redirect('/products')
 }
 module.exports.search = async function(req,res){
 	var q = req.query.q;
@@ -22,14 +25,12 @@ module.exports.create = function(req,res){
 module.exports.get =async function(req,res){
 	var id = req.params.id;
 	var users = await User.find({_id: id});
-	console.log(users);
 	res.render('users/detailUser',
 		{ users: users });
 }
 module.exports.edit =async function(req,res){
 	var id = req.params.id;
 	var users = await User.find({_id: id});
-	console.log(users);
 	res.render('users/edit',
 		{ users: users });
 }
@@ -37,7 +38,6 @@ module.exports.postCreate = async function(req,res){
 	req.body.password = md5(req.body.password);
 	req.body.admin = Boolean(req.body.admin);
 	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
-	console.log(req.body);
 	await User.insertMany(req.body);
 	res.redirect('/users');
 }
@@ -55,9 +55,11 @@ module.exports.putEdit = async function(req,res){
 	})
 }
 module.exports.deleteUser = async function(req,res){
-	await User.remove({_id:req.params.id},function(err){
+
+		await User.remove({_id:req.params.id},function(err){
 		if(err) res.json(err);
 		else	res.redirect('/users');
 	});
+	
 
 }

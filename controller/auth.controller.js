@@ -3,7 +3,7 @@ var md5 = require('md5')
 var mongo = require('mongodb').MongoClient;
 var objectId  = require('mongodb').ObjectId;
 module.exports.login = 	function(req,res){
-	if(req.signedCookies.userId)
+	if(req.signedCookies.userEmail)
 	{
 		res.redirect('/users');
 		return;
@@ -19,7 +19,6 @@ module.exports.postlogin = async function(req,res,next){
 	var password = req.body.password;
 	
 	var users = await User.find({email: email});
-	console.log(users[0])
 	if(!users[0]){
 		res.render('auth/login',{
 			errors : ['User does not exit.']
@@ -27,7 +26,6 @@ module.exports.postlogin = async function(req,res,next){
 		return;
 	}
 	var haspassword = md5(password);
-	console.log(haspassword)
 	if (users[0].password !== haspassword) {
 		// statement
 		res.render('auth/login',{
@@ -35,8 +33,10 @@ module.exports.postlogin = async function(req,res,next){
 		});
 		return;
 	}
-	console.log(users[0]._id)
 
 	res.cookie('userEmail',users[0].email,{signed:true});
-	res.redirect('/users');
+	if(users[0].admin == true){
+		res.redirect('/users');
+	}else res.redirect('/products');
+	
 }

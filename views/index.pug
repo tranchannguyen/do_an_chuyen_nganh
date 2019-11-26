@@ -1,2 +1,442 @@
-h1 heelllo #{name}
-a(href="/users") User list
+html
+head
+  meta(charset='UTF-8')
+  title  PBS 
+  link(href='/css/styles.css', rel='stylesheet', type='text/css')
+  link(href='/css/fontello.css', rel='stylesheet', type='text/css')
+  script(src='/js/jquery.js', type='text/javascript')
+  script(src='/js/jssor.slider-22.2.8.min.js')
+  script(src='/js/jssor.slider-22.2.8.min.js', type='text/javascript')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+  script(type='text/javascript').
+    jssor_1_slider_init = function() {
+    var jssor_1_SlideshowTransitions = [
+    {$Duration:1200,$Opacity:2}
+    ];
+    var jssor_1_options = {
+    $AutoPlay: true,
+    $SlideshowOptions: {
+    $Class: $JssorSlideshowRunner$,
+    $Transitions: jssor_1_SlideshowTransitions,
+    $TransitionsOrder: 1
+    },
+    $ArrowNavigatorOptions: {
+    $Class: $JssorArrowNavigator$
+    },
+    $BulletNavigatorOptions: {
+    $Class: $JssorBulletNavigator$
+    }
+    };
+    var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+    /*responsive code begin*/
+    /*you can remove responsive code if you don't want the slider scales while window resizing*/
+    function ScaleSlider() {
+    var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+    if (refSize) {
+    refSize = Math.min(refSize, 1920);/* Chỉnh độ rộng độ cao của slideshow ở đây */
+    jssor_1_slider.$ScaleWidth(refSize);
+    }
+    else {
+    window.setTimeout(ScaleSlider, 30);
+    }
+    }
+    ScaleSlider();
+    $Jssor$.$AddEvent(window, "load", ScaleSlider);
+    $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    /*responsive code end*/
+    };
+  style.
+    /* jssor slider bullet navigator skin 05 css */
+    /*
+    .jssorb05 div           (normal)
+    .jssorb05 div:hover     (normal mouseover)
+    .jssorb05 .av           (active)
+    .jssorb05 .av:hover     (active mouseover)
+    .jssorb05 .dn           (mousedown)
+    */
+    .jssorb05 {
+    position: absolute;
+    }
+    .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+    position: absolute;
+    /* size of bullet elment */
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    }
+    .jssorb05 div { background-position: -7px -7px; }
+    .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+    .jssorb05 .av { background-position: -67px -7px; }
+    .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+    /* jssor slider arrow navigator skin 12 css */
+    /*
+    .jssora12l                  (normal)
+    .jssora12r                  (normal)
+    .jssora12l:hover            (normal mouseover)
+    .jssora12r:hover            (normal mouseover)
+    .jssora12l.jssora12ldn      (mousedown)
+    .jssora12r.jssora12rdn      (mousedown)
+    */
+    .jssora12l, .jssora12r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 30px;
+    height: 46px;
+    cursor: pointer;
+    background: url('/images/a12.png') no-repeat;
+    overflow: hidden;
+    }
+    .jssora12l { background-position: -16px -37px; }
+    .jssora12r { background-position: -75px -37px; }
+    .jssora12l:hover { background-position: -136px -37px; }
+    .jssora12r:hover { background-position: -195px -37px; }
+    .jssora12l.jssora12ldn { background-position: -256px -37px; }
+    .jssora12r.jssora12rdn { background-position: -315px -37px; }
+header
+  .home_header
+    ul
+      li
+        a(href='#')  HOME 
+      li
+        a(href='#')  CONTACT 
+      li
+        a(href='#')  BLOG 
+  .num_header
+    .icon_num
+      i.icon-phone
+      a.number(href='#') 800-2345-6789
+  .home_header
+    ul
+      li
+        a(href='#')
+          i.icon-basket  
+      li
+        a(href='#')  My Cart
+      li
+        a(href='#')
+          i.icon-user-1   
+          | Account
+nav#nav_main
+  .logo_nav_main(style='padding:15px;width:280px;float:left;padding-bottom: inherit;')
+    img(src='/images/logo_main_header.png')
+  .nav
+    ul
+      li
+        a(href='#')  SONY PS 4 
+      li
+        a(href='#')  XBOX ONE 
+      li
+        a(href='#')  STRATEGY GAMES
+      li
+        a(href='#')  SONY PS 4 
+      li
+        a(href='#')  XBOX ONE 
+      li
+        a(href='#')  STRATEGY GAMES
+section
+  article.slider
+    // Nội dung phần slideshow
+    section.slideshow
+      // Copy toàn bộ nội dung sau vào thẻ section của trang web muốn hiển thị slideshow
+      // Chỉnh độ rộng độ cao của slideshow ở đây
+      #jssor_1(style='position:relative;width:1920px;height:1100px;overflow:hidden;visibility:hidden;')
+        // Loading Screen
+        div(data-u='loading', style='position:absolute;top:0px;left:0px;background-color:rgba(0,0,0,0.7);')
+          div(style='filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;')
+          div(style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;")
+        // Chỉnh độ rộng độ cao của slideshow ở đây
+        div(data-u='slides', style='cursor:default;position:relative;top:0px;left:0px;width:1920px;height:900px;overflow:hidden;')
+          // Mỗi Ảnh của slideshow nằm ở div bên dưới
+          div
+            img(data-u='image', src='/images/slider1.jpg')
+          div
+            img(data-u='image', src='/images/slider2.jpg')
+          div
+            img(data-u='image', src='/images/slider3.jpg')
+        // Bullet Navigator
+        .jssorb05(data-u='navigator', style='bottom:16px;right:16px;', data-autocenter='1')
+          // bullet navigator item prototype
+          div(data-u='prototype', style='width:16px;height:16px;')
+        // Arrow Navigator
+        span.jssora12l(data-u='arrowleft', style='top:0px;left:0px;width:30px;height:46px;', data-autocenter='2')
+        span.jssora12r(data-u='arrowright', style='top:0px;right:0px;width:30px;height:46px;', data-autocenter='2')
+      script(type='text/javascript').
+        jssor_1_slider_init();
+      // #endregion Jssor Slider End
+    // End slideshown
+  article.product
+    .column1
+      .info
+        | SHIELD Family
+        .title TITANFALL
+      .shop
+        .shop_now
+          a(href='#')  SHOP NOW! 
+    .column2
+      .info
+        | Game Console
+        .title NVIDIA SHIELD
+      .shop
+        .shop_now
+          a(href='#')  SHOP NOW! 
+    .column3
+      .info
+        | Microsoft Xbox One
+        .title CONTROLLER
+      .shop
+        .shop_now
+          a(href='#')  SHOP NOW! 
+  article.productS
+    .header_pro POPULAR
+    hr(style='width:100%;border:1px solid #e3e8ed;margin-bottom:46px;')
+    .page
+      .num_page
+        form
+          label Items per page: 
+          select
+            option 8
+            option 32
+            option 64
+    .row
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+      a#productS_id(href='#')
+        .row_1
+          .img_productS
+            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
+          .info_pro
+            a#name(href='#') Battlefield Hardline-PlayStation 3
+          .price
+            .price_new
+              span $24.00
+          .add
+            .add_cart
+              a(href='#')  ADD TO CART 
+    .page
+      .num_of_page
+        .page_1(style='float:left;')
+          a(href='#') 1
+        .page_2(style='float:left;')
+          a(href='#') 2
+        .page_3(style='float:left;')
+          a(href='#') 3
+  article.ship_pay
+    .ship
+      .info_ship
+        p(style="font-weight: 500;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #262626;font-size: 30px;line-height: 1.3;padding: 65px;padding-bottom: 25px;")
+          i.icon-truck(style='color: #4eab04;')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Shipping and Delivery
+        p(style="font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;padding-bottom: 120px;padding-right: 50px;padding-left: 50px;padding-top: 5px;")
+          | Here you can read some details about a nifty little lifecycle of 
+          br
+          |  your order&apos;s journey from the time you place your order to your new treasures arriving at your doorstep.
+    .pay
+      .info_pay
+        p(style="font-weight: 500;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #262626;font-size: 30px;line-height: 1.3;padding: 65px;padding-bottom: 25px;")
+          i.icon-credit-card(style='color: #4eab04;')
+          | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Payment Methods
+        p(style="font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;padding-bottom: 10px;padding-right: 50px;padding-left: 50px;padding-top: 5px;")
+          | It is equally important to choose the solution which offers a 
+          br
+          |  specific selection of credit cards that are most popular in the 
+          br
+          |  merchants target markets. We take Visa &amp; MasterCard as they are 
+          br
+          |  widely used by cyber customers.
+          br
+          .methods
+            a(href='#', style='text-decoration:none;')
+              i.icon-cc-paypal
+            a(href='#', style='text-decoration:none;')
+              i.icon-cc-visa
+            a(href='#', style='text-decoration:none;')
+              i.icon-cc-mastercard
+            a(href='#', style='text-decoration:none;')
+              i.icon-cc-discover
+            a(href='#', style='text-decoration:none;')
+              i.icon-cc-amex
+  article.brand
+    .slideshow-inner
+      img(src='Images/1.jpg')
+      img(src='Images/2.jpg')
+      img(src='Images/3.jpg')
+      img(src='Images/4.jpg')
+      img(src='Images/5.jpg')
+      img(src='Images/6.jpg')
+      img(src='Images/7.jpg')
+      img(src='Images/8.png')
+  article.newsletter
+    #newsletter_id
+      p#head_newsletter(style="padding-bottom: 25px;font-weight: 500;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #ffffff;font-size: 30px;line-height: 1.3;letter-spacing: 0px;")
+        | Newsletter
+      p#footer_newsletter(style="padding-bottom: 70px;font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #ffffff;font-size: 16px;line-height: 1.3;letter-spacing: 0px;")
+        | Subscribe to the Gamedixi mailing list to receive updates on new arrivals, 
+        br
+        |  special offers and other discount information.
+    div(style='float:left;width: 41%;')
+      form
+        input#email(type='e-mail', placeholder='Enter your e-mail * ', required='')
+        input#submit(type='submit', value='SUBCRIBE')
+  article.review
+    .from_the_blog From the blog
+    .row_review
+      .row_1_review
+        img(src='Images/review1.jpg')
+        p(style="padding-top: 15px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color:white;font-size: 16px;line-height: 2;letter-spacing: 1px;")
+          | XBOX ONE VS XBOX 360 CONSOLE ...
+        p(style="padding-bottom: 15px;font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;")
+          | Microsoft has finally ended Xbox 360 support, but is it still worth your money over the Xbox One? The Xbox One is a stunning piece of engineering, a top-notch games console...
+        .read
+          .read_more
+            a(href='#')  READ MORE 
+      .row_1_review
+        img(src='Images/review2.jpg')
+        p(style="padding-top: 15px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color:white;font-size: 16px;line-height: 2;letter-spacing: 1px;")
+          | BEST BLACK FRIDAY DEALS 2016
+        p(style="padding-bottom: 15px;font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;")
+          | Best Black Friday deals 2016: Best UK Black Friday tech deals, sales, discounts &amp; offers. Black Friday and Cyber Monday are two of the best times to grab some amazing tech...
+        .read
+          .read_more
+            a(href='#')  READ MORE 
+      .row_1_review
+        img(src='Images/review3.jpg')
+        p(style="padding-top: 15px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color:white;font-size: 16px;line-height: 2;letter-spacing: 1px;")
+          | NVIDIA SHIELD TV AND GEFORCE NOW...
+        p(style="padding-bottom: 15px;font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;")
+          | Nvidia Shield TV and GeForce Now review: Powerful processor, native 4K resolution and game streaming make this hard to fault. The Nvidia Shield TV is the latest in a...
+        .read
+          .read_more
+            a(href='#')  READ MORE 
+      .row_1_review
+        img(src='Images/review4.jpg')
+        p(style="padding-top: 15px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color:white;font-size: 16px;line-height: 2;letter-spacing: 1px;")
+          | PS4 VS XBOX ONE REVIEW: WHICH IS...
+        p(style="padding-bottom: 15px;font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;")
+          | PS4 vs Xbox One review: Which is best - PlayStation 4 or Xbox One? PlayStation update brings PC/Mac Remote Play along with a number of improvements.
+        .read
+          .read_more
+            a(href='#')  READ MORE 
+footer
+  .footer_main
+    hr(style='border: 0;margin-top: 20px;margin-bottom:60px;border-top: 1px solid #eee;border-top-color: rgba(64,64,64,0.7);')
+    .footer_main_left
+      p(style="margin-bottom:25px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #ffffff;font-size: 16px;line-height: 1.3;letter-spacing: 1px;")
+        | INFORMATION
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | OUR STORES
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | &ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;CONTACT US
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | DELIVERY
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | ABOUT US
+    .footer_main_center
+      p(style="margin-bottom:25px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #ffffff;font-size: 16px;line-height: 1.3;letter-spacing: 1px;")
+        | CATEGORIES
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | SONY PS4
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | XBOX ONE
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | NINTENDO WII U
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | NVIDIA SHIELD TV
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | STRATEGY GAMES
+      a(href='#', style='text-decoration: none;    color: #4eab04;')
+        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
+          | SPORTS GAMES
+    div(style='float:right;height:270px;width:270px;')
+      iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7859820.103488102!2d101.31184092138217!3d15.866959296078807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1496070074541', width='270', height='215', frameborder='0', style='border:0', allowfullscreen='')
+    .footer_main_right
+      p(style="font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;")
+        i.icon-location(style='color: #4eab04;')
+        |  My Company , 28 Jackson Blvd Ste 1020 Chicago IL 60604-2340
+      hr(style='margin-top: 30px;padding-bottom:30px;border: 0;border-top: 1px solid #eee;border-top-color: rgba(64,64,64,0.7);')
+      p
+        i.icon-phone(style='color: #4eab04;')
+        a(href='#', style="font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;text-decoration:none")
+          | 0123-456-789
+      hr(style='margin-top: 30px;padding-bottom:30px;border: 0;border-top: 1px solid #eee;border-top-color: rgba(64,64,64,0.7);')
+      p
+        i.icon-mail-alt(style='color: #4eab04;')
+        a(href='#', style="font-weight: 400;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #888888;font-size: 16px;line-height: 1.3;text-decoration:none")
+          | info@demolink.org
+    hr(style='clear:both;border: 0;padding-bottom: 46px;border-top: 1px solid #eee;border-top-color: rgba(64,64,64,0.7);')
+    .app
+      i.icon-facebook  
+      i.icon-twitter  
+      i.icon-gplus  
+      i.icon-pinterest-circled  
+      i.icon-linkedin  
+      i.icon-instagram  
