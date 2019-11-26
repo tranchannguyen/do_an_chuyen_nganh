@@ -25,14 +25,12 @@ module.exports.create = function(req,res){
 module.exports.get =async function(req,res){
 	var id = req.params.id;
 	var users = await User.find({_id: id});
-	console.log(users);
 	res.render('users/detailUser',
 		{ users: users });
 }
 module.exports.edit =async function(req,res){
 	var id = req.params.id;
 	var users = await User.find({_id: id});
-	console.log(users);
 	res.render('users/edit',
 		{ users: users });
 }
@@ -40,7 +38,6 @@ module.exports.postCreate = async function(req,res){
 	req.body.password = md5(req.body.password);
 	req.body.admin = Boolean(req.body.admin);
 	req.body.avatar = req.file.path.split('\\').slice(1).join('/');
-	console.log(req.body);
 	await User.insertMany(req.body);
 	res.redirect('/users');
 }

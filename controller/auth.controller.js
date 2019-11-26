@@ -19,7 +19,6 @@ module.exports.postlogin = async function(req,res,next){
 	var password = req.body.password;
 	
 	var users = await User.find({email: email});
-	console.log(users[0])
 	if(!users[0]){
 		res.render('auth/login',{
 			errors : ['User does not exit.']
@@ -27,7 +26,6 @@ module.exports.postlogin = async function(req,res,next){
 		return;
 	}
 	var haspassword = md5(password);
-	console.log(haspassword)
 	if (users[0].password !== haspassword) {
 		// statement
 		res.render('auth/login',{
@@ -35,7 +33,6 @@ module.exports.postlogin = async function(req,res,next){
 		});
 		return;
 	}
-	console.log(users[0]._id)
 
 	res.cookie('userEmail',users[0].email,{signed:true});
 	if(users[0].admin == true){

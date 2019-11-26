@@ -48,6 +48,7 @@ module.exports.get = async function(req,res){
 	var products = await Product.find({_id: id});
 	res.render('products/detailProduct',
 		{ products: products });
+
 }
 module.exports.postCreate = async function(req,res){
 	
@@ -58,5 +59,5 @@ module.exports.postCreate = async function(req,res){
 	}else req.body.status = false;
 	console.log(req.body);
 	await Product.insertMany(req.body);
-	res.redirect('/products');
+	res.render('products/')
 }
