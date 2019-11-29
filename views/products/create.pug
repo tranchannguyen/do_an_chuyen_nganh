@@ -18,6 +18,14 @@ block content
 									.col-sm-9
 										input#name.form-control.input-sm(type="text",name="name",value = value ? values.name : "")
 								.form-group
+									label.col-sm-2.control-label(for="danhmuc") Name Category
+									.col-sm-9
+										select(name="idCate", type='text')
+											each cate in cates
+												
+												option(value=cate._id)= cate.name
+											option(value='', selected='') None
+								.form-group
 									label.col-sm-2.control-label(for="price") Price
 									.col-sm-9
 										input#price.form-control(type="number",name="price")

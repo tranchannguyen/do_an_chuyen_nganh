@@ -17,6 +17,13 @@ block content
                                     .col-sm-5
                                         input#name.form-control.input-sm(disabled='', type="text",name="name",value = product.name)
                                 .form-group
+                                        label.col-sm-2.control-label(for="danhmuc") Name Category
+                                        .col-sm-9
+                                            select(name="idCate", type='text',disabled="")
+                                                each cate in cates
+                                                    if(cate._id==product.idCate)
+                                                        option(value=cate._id,selected='')= cate.name
+                                .form-group
                                     label.col-sm-2.control-label(for="price") Gia
                                     .col-sm-5
                                         input#price.form-control(disabled='',type="number",name="price",value = product.price)
@@ -28,16 +35,7 @@ block content
                                     label.col-sm-2.control-label(for="decription") Mo ta
                                     .col-sm-5
                                         input#decription.form-control(disabled='',type="text",name="decription", value = product.decription)
-                                if(product.status == true)
-                                    .form-group
-                                        label.col-sm-2.control-label(for="status") Trang thai
-                                        .col-sm-5
-                                            p.btn.btn-success Con hang
-                                else 
-                                    .form-group
-                                        label.col-sm-2.control-label(for="status") Trang thai
-                                        .col-sm-5
-                                            p.btn.btn-danger Het hang
+                                
                 
                                 .col-sm-offset-2
                                     a.btn.btn-warning(href='/products/edits/'+product.id) Edit

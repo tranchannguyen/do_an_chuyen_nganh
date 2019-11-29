@@ -17,22 +17,23 @@ block content
 									th So luong
 									th Action
 							tbody
-							each product in products
-								tr
-									td
-										img.border.border-success.rounded-lg(src=product.pro_image, width="72",height ="72")
-									td
-										p(text-align='center')= product.name
-									if(product.status == true)
+							if products
+								each product in products
+									tr
 										td
-											p(text-align='center')= product.quantity
-									else
+											img.border.border-success.rounded-lg(src=product.pro_image, width="72",height ="72")
 										td
-											p.btn.btn-danger(text-align='center') Het hang
-									td
-										a.btn.btn-primary(href="/products/"+product.id) View
-										span 
-										a.btn.btn-warning(href="/products/edits/"+product.id) Edit
-										span 
-										a.btn.btn-danger(href="/products/"+product.id+"/delete",onclick="return confirm('Bạn có muốn xoa không ?')") Delete
-						
+											p(text-align='center')= product.name
+										if(product.status == true)
+											td
+												p(text-align='center')= product.quantity
+										else
+											td
+												p.btn.btn-danger(text-align='center') Het hang
+										td
+											a.btn.btn-primary(href="/products/"+product.id) View
+											span 
+											a.btn.btn-warning(href="/products/edits/"+product.id) Edit
+											span 
+											a.btn.btn-danger(href="/products/"+product.id+"/delete",onclick="return confirm('Bạn có muốn xoa không ?')") Delete
+							

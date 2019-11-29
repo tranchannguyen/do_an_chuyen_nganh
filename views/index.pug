@@ -124,18 +124,10 @@ nav#nav_main
     img(src='/images/logo_main_header.png')
   .nav
     ul
-      li
-        a(href='#')  SONY PS 4 
-      li
-        a(href='#')  XBOX ONE 
-      li
-        a(href='#')  STRATEGY GAMES
-      li
-        a(href='#')  SONY PS 4 
-      li
-        a(href='#')  XBOX ONE 
-      li
-        a(href='#')  STRATEGY GAMES
+      each category in categorys 
+        li
+          a(href='#')= category.name 
+
 section
   article.slider
     // Nội dung phần slideshow
@@ -201,78 +193,20 @@ section
             option 32
             option 64
     .row
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
-      a#productS_id(href='#')
-        .row_1
-          .img_productS
-            img(src='/images/productS1.jpg', style='width:297px;text-align:center')
-          .info_pro
-            a#name(href='#') Battlefield Hardline-PlayStation 3
-          .price
-            .price_new
-              span $24.00
-          .add
-            .add_cart
-              a(href='#')  ADD TO CART 
+      each product in products
+        a#productS_id(href='#')
+          .row_1
+            .img_productS
+              img(src=product.pro_image, style='width:297px;height:297px;text-align:center')
+            .info_pro
+              a#name(href='#')= product.name
+            .price
+              .price_new
+                span= product.price
+            .add
+              .add_cart
+                a(href='#')  ADD TO CART 
+    
     .page
       .num_of_page
         .page_1(style='float:left;')
@@ -281,6 +215,9 @@ section
           a(href='#') 2
         .page_3(style='float:left;')
           a(href='#') 3
+    .header_pro 
+      a(href='#') Xem tất cả
+    hr(style='width:100%;border:1px solid #e3e8ed;margin-bottom:46px;')
   article.ship_pay
     .ship
       .info_ship
@@ -398,24 +335,9 @@ footer
     .footer_main_center
       p(style="margin-bottom:25px;font-weight: 700;font-style: normal;font-family: 'Ubuntu', sans-serif;color: #ffffff;font-size: 16px;line-height: 1.3;letter-spacing: 1px;")
         | CATEGORIES
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | SONY PS4
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | XBOX ONE
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | NINTENDO WII U
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | NVIDIA SHIELD TV
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | STRATEGY GAMES
-      a(href='#', style='text-decoration: none;    color: #4eab04;')
-        p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')
-          | SPORTS GAMES
+      each category in categorys
+        a(href='#', style='text-decoration: none;    color: #4eab04;')
+          p(style=';margin-bottom:10px;font-weight: 400;font-style: normal;')= category.name
     div(style='float:right;height:270px;width:270px;')
       iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7859820.103488102!2d101.31184092138217!3d15.866959296078807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1496070074541', width='270', height='215', frameborder='0', style='border:0', allowfullscreen='')
     .footer_main_right
