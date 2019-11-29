@@ -64,6 +64,7 @@ module.exports.get = async function(req,res){
 module.exports.postCreate = async function(req,res){
 	
 	req.body.pro_image = req.file.path.split('\\').slice(1).join('/');
+	req.body.popular = Boolean(req.body.popular);
 	if(req.body.quantity > 0)
 	{
 		req.body.status = true;

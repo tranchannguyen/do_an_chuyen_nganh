@@ -60,16 +60,10 @@ head
                         ul.custom_list.clc
                           li
                             a.clc(href='#') All Categories
-                          li
-                            a.clc(href='#') Computers
-                          li
-                            a.clc(href='#') Laptops
-                          li
-                            a.clc(href='#') Cameras
-                          li
-                            a.clc(href='#') Hardware
-                          li
-                            a.clc(href='#') Smartphones
+                          if categorys
+                            each category in categorys
+                              li
+                                a.clc(href='#')= category.name
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='/webpage/images/search.png', alt='')
           // Wishlist
@@ -101,34 +95,12 @@ head
                     span
                   .cat_menu_text categories
                 ul.cat_menu
-                  li
-                    a(href='#')
-                      | Computers &amp; Laptops 
-                      i.fas.fa-chevron-right.ml-auto
-                  li
-                    a(href='#')
-                      | Smartphones &amp; Tablets
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | TV &amp; Audio
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Gadgets
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Car Electronics
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Video Games &amp; Consoles
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Accessories
-                      i.fas.fa-chevron-right
+                  if categorys
+                    each category in categorys
+                      li
+                        a(href='#')= category.name
+                          i.fas.fa-chevron-right.ml-auto
+                  
               // Main Nav Menu
               .main_nav_menu.ml-auto
                 ul.standard_dropdown.main_nav_dropdown
@@ -257,6 +229,7 @@ head
         .col-lg-9
           .popular_categories_slider_container
             .owl-carousel.owl-theme.popular_categories_slider
+
               // Popular Categories Item
               .owl-item
                 .popular_category.d-flex.flex-column.align-items-center.justify-content-center
@@ -305,21 +278,23 @@ head
                 // Product Panel
                 .product_panel.panel.active
                   .arrivals_slider.slider
-                    // Slider Item
-                    .arrivals_slider_item
-                      .border_active
-                      .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
-                        .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                          img(src='/webpage/images/new_1.jpg', alt='')
-                        .product_content
-                          .product_price $225
-                          .product_name
-                            div
-                              a(href='product.html') Astro M2 Black
-                          .product_extras
-                            button.product_cart_button Add to Cart
-                        .product_fav
-                          i.fas.fa-heart                      
+                    if products
+                      each product in products
+                        // Slider Item
+                        .arrivals_slider_item
+                          .border_active
+                          .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                            .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                              img(src=product.pro_image, alt='')
+                            .product_content
+                              .product_price='$'+product.price
+                              .product_name
+                                div
+                                  a(href='product.html')= product.name
+                              .product_extras
+                                button.product_cart_button Add to Cart
+                            .product_fav
+                              i.fas.fa-heart                      
                     // Slider Item
                     .arrivals_slider_item
                       .border_active
