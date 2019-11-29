@@ -1,0 +1,23 @@
+extends ../layouts/commit
+
+block content
+	#page-wrapper(style='min-height: 616px;')
+		.main-page
+			.forms
+				.form-grids.row.form-grids-right
+					.widget-shadow(data-example-id='basic-forms')
+						.form-title
+							h4 Sua danh muc
+						each category in categorys
+							.form-body
+								form.form-horizontal(action="/categorys/edits/"+category._id,method="POST")
+									.form-group
+										label.col-sm-2.control-label(for="name") New Category
+										.col-sm-6
+											input#name.form-control.input-sm(type="text",name="name")
+									.form-group
+										label.col-sm-2.control-label(for="decription") New Decription
+										.col-sm-6
+											input#decription.form-control.input-sm(type="text",name="decription")
+									.col-sm-offset-2
+										button.btn.btn-success(type='submit') Edit

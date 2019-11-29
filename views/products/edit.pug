@@ -20,6 +20,16 @@ block content
                                         .col-sm-5
                                             input#name.form-control.input-sm( type="text",name="name",value = product.name)
                                     .form-group
+                                        label.col-sm-2.control-label(for="danhmuc") Name Category
+                                        .col-sm-9
+                                            select(name="idCate", type='text')
+                                                each cate in category
+                                                    if(cate._id==product.idCate)
+                                                        option(value=cate._id,selected='')= cate.name
+                                                    else
+                                                        option(value=cate._id)= cate.name
+                                               
+                                    .form-group
                                         label.col-sm-2.control-label(for="price") Gia
                                         .col-sm-5
                                             input#price.form-control(type="number",name="price",value = product.price)
@@ -31,16 +41,6 @@ block content
                                         label.col-sm-2.control-label(for="decription") Mo ta
                                         .col-sm-5
                                             input#decription.form-control(type="text",name="decription", value = product.decription)
-                                    if(product.status == true)
-                                        .form-group
-                                            label.col-sm-2.control-label(for="status") Trang thai
-                                            .col-sm-5
-                                                p.btn.btn-success Con hang
-                                    else 
-                                        .form-group
-                                            label.col-sm-2.control-label(for="status") Trang thai
-                                            .col-sm-5
-                                                p.btn.btn-danger Het hang
                                     .col-sm-offset-2
                                         button.btn.btn-warning(type="submit") Save
 

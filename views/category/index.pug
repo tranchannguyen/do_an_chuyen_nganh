@@ -1,0 +1,28 @@
+extends ../layouts/commit
+block content
+		#page-wrapper
+			.main-page
+				.tables
+					.panel-body.widget-shadow
+						h1 Danh sách Danh muc		
+						table.table.table-hove
+							thead
+								tr
+									th ID
+									th Ten Danh muc
+									th Decription
+									th Action
+							tbody
+							each cate in cates
+								tr
+									td
+										p(text-align='center')= cate._id
+									td
+										p(text-align='center')= cate.name
+									td
+										p(text-align='center')= cate.decription
+									td
+										a.btn.btn-warning(href="/categorys/edits/"+cate._id) Edit
+										span 
+										a.btn.btn-danger(href="/categorys/"+cate.id+"/delete",onclick="return confirm('Bạn có muốn xoa không ?')") Delete
+						
