@@ -45,7 +45,7 @@ head
           .col-lg-2.col-sm-3.col-3.order-1
             .logo_container
               .logo
-                a(href='/') TechShop
+                a(href='#') OneTech
           // Search
           .col-lg-6.col-12.order-lg-2.order-3.text-lg-left.text-right
             .header_search
@@ -75,11 +75,11 @@ head
                   .cart_icon
                     img(src='/webpage/images/cart.png', alt='')
                     .cart_count
-                      span 0
+                      span 10
                   .cart_content
                     .cart_text
                       a(href='#') Cart
-
+                    .cart_price $85
     // Main Navigation
     nav.main_nav
       .container
@@ -98,21 +98,57 @@ head
                   if categorys
                     each category in categorys
                       li
-                        a(href='/productofcategorys/'+category._id)= category.name
+                        a(href='#')= category.name
                           i.fas.fa-chevron-right.ml-auto
                   
               // Main Nav Menu
               .main_nav_menu.ml-auto
                 ul.standard_dropdown.main_nav_dropdown
                   li
-                    a(href='/')
+                    a(href='#')
                       | Home
                       i.fas.fa-chevron-down
-                  each category in categorys
-                    li
-                      a(href='/productofcategorys/'+category._id)= category.name
-                        
-                        i.fas.fa-chevron-down 
+                  li.hassubs
+                    a(href='#')
+                      | Pages
+                      i.fas.fa-chevron-down
+                    ul
+                      li
+                        a(href='shop.html')
+                          | Shop
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='product.html')
+                          | Product
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='blog.html')
+                          | Blog
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='blog_single.html')
+                          | Blog Post
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='regular.html')
+                          | Regular Post
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='cart.html')
+                          | Cart
+                          i.fas.fa-chevron-down
+                      li
+                        a(href='contact.html')
+                          | Contact
+                          i.fas.fa-chevron-down
+                  li
+                    a(href='blog.html')
+                      | Blog
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='contact.html')
+                      | Contact
+                      i.fas.fa-chevron-down
               // Menu Trigger
               .menu_trigger_container.ml-auto
                 .menu_trigger.d-flex.flex-row.align-items-center.justify-content-end
@@ -234,7 +270,7 @@ head
               .new_arrivals_title Populars Product
               ul.clearfix
                 li.active Featured
-                a(href="/viewAll") View All Products
+                a(href="") View All Products
               .tabs_line
                 span
             .row
@@ -242,25 +278,23 @@ head
                 // Product Panel
                 .product_panel.panel.active
                   .arrivals_slider.slider
-                    if products
-                      each product in products
-                        // Slider Item
-                        .arrivals_slider_item
-                          .border_active
-                          .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
-                            .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                              img(src=product.pro_image, alt='')
-                            .product_content
-                              .product_price='$'+product.price
-                              .product_name
-                                div
-                                  a(href='/viewDetailProduct/'+product._id)= product.name
-                              .product_extras
-                                form
-                                  button.product_cart_button Add to Cart
-                            .product_fav
-                              i.fas.fa-heart                      
-                    
+                    block content
+                            
+                    // Slider Item
+                    .arrivals_slider_item
+                      .border_active
+                      .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                        .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                          img(src='/webpage/images/new_2.jpg', alt='')
+                        .product_content
+                          .product_price $379
+                          .product_name
+                            div
+                              a(href='product.html') Transcend T.Sonic
+                          .product_extras
+                            button.product_cart_button.active Add to Cart
+                        .product_fav
+                          i.fas.fa-heart
                           
       // Adverts
       .adverts

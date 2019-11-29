@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path')
-var Product = require('./models/product.model')
-var Category = require('./models/category.model')
+// var Product = require('./models/product.model')
+// var Category = require('./models/category.model')
 var app = express();
 var port = 3000;
 
@@ -27,6 +27,7 @@ var productRoute = require('./routes/product.route')
 var authMidleware = require('./midlewares/auth.midleware.js')
 var adminMidleware = require('./midlewares/admin.midleware')
 var categoryRoute = require('./routes/category.route')
+var webpageRoute = require('./routes/webpage.route')
 
 app.set('view engine','pug');
 app.set('views','./views');
@@ -41,16 +42,20 @@ app.use('/users', express.static(path.join(__dirname, 'public')))
 app.use('/products', express.static(path.join(__dirname, 'public')))
 app.use('/products/edits', express.static(path.join(__dirname, 'public')))
 app.use('/categorys', express.static(path.join(__dirname, 'public')))
+app.use('/productofcategorys', express.static(path.join(__dirname, 'public')))
+app.use('/viewDetailProduct', express.static(path.join(__dirname, 'public')))
 
-app. get('/', async function(req,res){
-   var products = await Product.find();
-   var categorys = await Category.find()
-   res.render('index',{
-      products: products,
-      categorys: categorys
-   });
-});
 
+// app.get('/', async function(req,res){
+//    var products = await Product.find();
+//    var categorys = await Category.find();
+//    res.render('index',{
+//       products: products,
+//       categorys: categorys
+//    });
+// });
+
+app.use('/',webpageRoute);
 app.use('/categorys',authMidleware.requireAuth,categoryRoute);
 app.use('/users',authMidleware.requireAuth,adminMidleware.requireAdmin,userRoute);
 app.use('/products',authMidleware.requireAuth,productRoute);
