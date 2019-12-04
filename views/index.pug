@@ -244,22 +244,23 @@ head
                   .arrivals_slider.slider
                     if products
                       each product in products
-                        // Slider Item
-                        .arrivals_slider_item
-                          .border_active
-                          .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
-                            .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                              img(src=product.pro_image, alt='')
-                            .product_content
-                              .product_price='$'+product.price
-                              .product_name
-                                div
-                                  a(href='/viewDetailProduct/'+product._id)= product.name
-                              .product_extras
-                                form
-                                  button.product_cart_button Add to Cart
-                            .product_fav
-                              i.fas.fa-heart                      
+                        if(product.popular == true)
+                          // Slider Item
+                          .arrivals_slider_item
+                            .border_active
+                            .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                              .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                                img(src=product.pro_image, alt='')
+                              .product_content
+                                .product_price='$'+product.price
+                                .product_name
+                                  div
+                                    a(href='/viewDetailProduct/'+product._id)= product.name
+                                .product_extras
+                                  form
+                                    button.product_cart_button Add to Cart
+                              .product_fav
+                                i.fas.fa-heart                      
                     
                           
       // Adverts

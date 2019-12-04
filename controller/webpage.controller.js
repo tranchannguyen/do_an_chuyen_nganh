@@ -34,7 +34,6 @@ module.exports.viewProductByCateId = async function(req,res){
     var products = await Product.find({_id: id});
     var categorys = await Category.find();
     var catein = await Category.find({_id: products[0].idCate});
-    console.log(catein)
     res.render('webpage/singleProduct',{
        products: products,
        categorys: categorys,

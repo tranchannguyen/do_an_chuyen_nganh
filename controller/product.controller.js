@@ -34,12 +34,14 @@ module.exports.postEdit = async function(req,res){
 	{
 		req.body.status = true;
 	}else req.body.status = false;
+	req.body.popular = Boolean(req.body.popular);
 	await Product.findOneAndUpdate({_id:req.params.id},{
 		name:req.body.name,
 		price:req.body.price,
 		quantity:req.body.quantity,
 		idCate: req.body.idCate,
 		decription:req.body.decription,
+		popular:req.body.popular,
 		status:req.body.status,
 		update_time : new Date()
 	},function(err){

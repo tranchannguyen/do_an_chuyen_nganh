@@ -35,7 +35,20 @@ block content
                                     label.col-sm-2.control-label(for="decription") Mo ta
                                     .col-sm-5
                                         input#decription.form-control(disabled='',type="text",name="decription", value = product.decription)
-                                
+                                if(product.popular == true)
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-3
+                                            .checkbox
+                                                label
+                                                    input(disabled='',type='checkbox',name="popular",value="1", checked='')
+                                                    |  Phổ biến
+                                else
+                                    .form-group
+                                        .col-sm-offset-2.col-sm-3
+                                            .checkbox
+                                                label
+                                                    input(disabled='',type='checkbox',name="popular",value="1")
+                                                    |  Phổ biến
                 
                                 .col-sm-offset-2
                                     a.btn.btn-warning(href='/products/edits/'+product.id) Edit
