@@ -26,8 +26,10 @@ var authRoute = require('./routes/auth.route')
 var productRoute = require('./routes/product.route')
 var authMidleware = require('./midlewares/auth.midleware.js')
 var adminMidleware = require('./midlewares/admin.midleware')
+var userGMidleware = require('./midlewares/userG.midleware')
 var categoryRoute = require('./routes/category.route')
 var webpageRoute = require('./routes/webpage.route')
+
 
 app.set('view engine','pug');
 app.set('views','./views');
@@ -55,7 +57,7 @@ app.use('/viewDetailProduct', express.static(path.join(__dirname, 'public')))
 //    });
 // });
 
-app.use('/',webpageRoute);
+app.use('/',userGMidleware.requireUserG,webpageRoute);
 app.use('/categorys',authMidleware.requireAuth,categoryRoute);
 app.use('/users',authMidleware.requireAuth,adminMidleware.requireAdmin,userRoute);
 app.use('/products',authMidleware.requireAuth,productRoute);

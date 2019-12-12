@@ -30,12 +30,20 @@ head
               a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
             .top_bar_content.ml-auto
               .top_bar_user
-                .user_icon
-                  img(src='/webpage/images/user.svg', alt='')
-                div
-                  a(href='#') Register
-                div
-                  a(href='#') Sign in
+                if userG
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='#')= userG.name
+                  div
+                    a(href='/logout') Đăng xuất
+                else
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='/resiger') Register
+                  div
+                    a(href='/login') Sign in
     // Header Main
     .header_main
       .container
@@ -44,7 +52,7 @@ head
           .col-lg-2.col-sm-3.col-3.order-1
             .logo_container
               .logo
-                a(href='#') TechShop
+                a(href='/') TechShop
           // Search
           .col-lg-6.col-12.order-lg-2.order-3.text-lg-left.text-right
             .header_search
@@ -103,7 +111,7 @@ head
               .main_nav_menu.ml-auto
                 ul.standard_dropdown.main_nav_dropdown
                   li
-                    a(href='index.html')
+                    a(href='/')
                       | Home
                       i.fas.fa-chevron-down
                   each category in categorys

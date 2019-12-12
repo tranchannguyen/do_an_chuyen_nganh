@@ -31,12 +31,20 @@ head
               a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
             .top_bar_content.ml-auto
               .top_bar_user
-                .user_icon
-                  img(src='/webpage/images/user.svg', alt='')
-                div
-                  a(href='#') Register
-                div
-                  a(href='#') Sign in
+                if userG
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='#')= userG.name
+                  div
+                    a(href='/logout') Đăng xuất
+                else
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='/resiger') Register
+                  div
+                    a(href='/login') Sign in
     // Header Main
     .header_main
       .container
@@ -250,7 +258,8 @@ head
                             .border_active
                             .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
                               .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                                img(src=product.pro_image, alt='')
+                                a(href='/viewDetailProduct/'+product._id)
+                                  img(src=product.pro_image, alt='')
                               .product_content
                                 .product_price='$'+product.price
                                 .product_name

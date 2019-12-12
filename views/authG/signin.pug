@@ -1,0 +1,57 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title &Dstrok;&abreve;ng nh&#x1EAD;p
+  // Font Icon
+  link(rel='stylesheet', href='/userG/fonts/material-icon/css/material-design-iconic-font.min.css')
+  // Main css
+  link(rel='stylesheet', href='/userG/css/style.css')
+.main
+  // Sing in  Form
+  section.sign-in
+    .container
+      .signin-content
+        .signin-image
+          figure
+            img(src='/userG/images/signin-image.jpg', alt='sing up image')
+          a.signup-image-link(href='/resiger') Create an account
+        .signin-form
+          h2.form-title Sign in
+            if errors
+              each error in errors
+                .alert.alert-danger= error
+          form#login-form.register-form(action ='/login',method='POST')
+            .form-group
+              label(for='your_email')
+                i.zmdi.zmdi-account.material-icons-name
+              input#your_email(type='text', name='your_email', placeholder='Your Email')
+            .form-group
+              label(for='your_pass')
+                i.zmdi.zmdi-lock
+              input#your_pass(type='password', name='your_pass', placeholder='Password')
+            .form-group
+              input#remember-me.agree-term(type='checkbox', name='remember-me')
+              label.label-agree-term(for='remember-me')
+                span
+                  span
+                | Remember me
+            .form-group.form-button
+              input#signin.form-submit(type='submit', name='signin', value='Log in')
+          .social-login
+            span.social-label Or login with
+            ul.socials
+              li
+                a(href='#')
+                  i.display-flex-center.zmdi.zmdi-facebook
+              li
+                a(href='#')
+                  i.display-flex-center.zmdi.zmdi-twitter
+              li
+                a(href='#')
+                  i.display-flex-center.zmdi.zmdi-google
+// JS
+script(src='/userG/vendor/jquery/jquery.min.js')
+script(src='/userG/js/main.js')
+// This templates was made by Colorlib (https://colorlib.com)
