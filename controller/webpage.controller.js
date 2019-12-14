@@ -1,6 +1,7 @@
 var Product = require('../models/product.model')
 var Category = require('../models/category.model')
 var UserG = require('../models/userG.model')
+var Order = require('../models/order')
 var md5 = require('md5');
 
 module.exports.index = async function(req,res){
@@ -89,4 +90,38 @@ module.exports.viewProductByCateId = async function(req,res){
  module.exports.logout  = function(req,res){
    res.clearCookie('userG')
 	res.redirect('/');
+ }
+ module.exports.cart = async function(req,res){
+   if(req.session.cart){
+      var arrayPro = Object.values(req.session.cart.items);
+      console.log(arrayPro);
+      var categorys = await Category.find();
+      res.render('webpage/cart',{categorys: categorys, arrayPro: arrayPro})
+   }else{
+      var categorys = await Category.find();
+      res.render('webpage/cart',{categorys: categorys})
+   }
+ }
+ module.exports.clear = function(req,res){
+   res.clearCookie('connect.sid');
+   res.redirect('/');
+ }
+ module.exports.checkout = async function(req,res){
+   if(!req.session.cart){
+      res.redirect('/cart')
+   }
+   var categorys = await Category.find();
+      res.render('webpage/checkout',{categorys: categorys})
+ }
+ module.exports.postCheckout = async function(req,res){
+    req.body.cart = req.session.cart;
+    req.body.checked = false;
+    await Order.insertMany(req.body);
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+   // if(!req.session.cart){
+   //    res.redirect('/cart')
+   // }
+   // var categorys = await Category.find();
+   //    res.render('webpage/checkout',{categorys: categorys})
  }

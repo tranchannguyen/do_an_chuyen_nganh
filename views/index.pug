@@ -83,10 +83,13 @@ head
                   .cart_icon
                     img(src='/webpage/images/cart.png', alt='')
                     .cart_count
-                      span 0
+                      if session.cart
+                        span= session.cart.totalQty
+                      else
+                        span 0
                   .cart_content
                     .cart_text
-                      a(href='#') Cart
+                      a(href='/cart') Cart
 
     // Main Navigation
     nav.main_nav
@@ -267,7 +270,7 @@ head
                                     a(href='/viewDetailProduct/'+product._id)= product.name
                                 .product_extras
                                   form
-                                    button.product_cart_button Add to Cart
+                                    a.button.product_cart_button(href='/add-to-cart/'+product._id,type='button') Add to cart
                               .product_fav
                                 i.fas.fa-heart                      
                     

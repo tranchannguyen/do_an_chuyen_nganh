@@ -1,0 +1,35 @@
+extends ../layouts/commit
+block content
+		#page-wrapper
+			.main-page
+				.tables
+					.panel-body.widget-shadow
+						h1 Sản phẩm trong đơn hàng
+
+								
+						table.table.table-hove
+							thead
+								tr
+									th Id
+									th Name
+									th Image
+									th Số lượng
+									th Tổng giá 
+							tbody
+							each pro in arrayPro
+								tr
+									td
+										p= pro.item._id
+									td
+										p= pro.item.name
+									td
+										img(src= pro.item.pro_image, width="64",height ="64")
+									td
+										p= pro.qty
+									td
+										p= pro.price
+
+						if orders
+							span Tổng giá: 
+							p=orders.cart.totalPrice             
+									

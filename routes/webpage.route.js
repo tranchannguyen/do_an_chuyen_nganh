@@ -1,6 +1,7 @@
 var express = require('express');
 var webpageController = require('../controller/webpage.controller')
-
+var Product = require('../models/product.model')
+var Cart = require('../models/cart')
 var router = express.Router()
 
 
@@ -13,6 +14,26 @@ router.post('/resiger',webpageController.postResiger)
 router.get('/login',webpageController.login)
 router.post('/login',webpageController.postLogin)
 router.get('/logout',webpageController.logout)
+router.get('/add-to-cart/:id', function(req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    Product.findById(productId, function(err, product) {
+       if (err) {
+           return res.redirect('/');
+       }
+        cart.add(product, product.id);
+        req.session.cart = cart;
+        console.log(req.session.cart);
+        res.redirect('/');
+    });
+});
+router.get('/cart',webpageController.cart);
+router.get('/cart/clear',webpageController.clear);
+router.get('/checkout',webpageController.checkout);
+router.post('/checkout',webpageController.postCheckout);
+
+
 // router.get('/search',userController.search);
 // router.get('/create',userController.create);
 // router.get('/:id',userController.get);

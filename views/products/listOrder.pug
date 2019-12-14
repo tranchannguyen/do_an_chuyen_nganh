@@ -1,0 +1,36 @@
+extends ../layouts/commit
+block content
+		#page-wrapper
+			.main-page
+				.tables
+					.panel-body.widget-shadow
+						h1 Danh sách Đơn hàng
+
+								
+						table.table.table-hove
+							thead
+								tr
+									th Name
+									th Phone
+									th Address
+									th Action
+							tbody
+							each order in orders
+								tr
+									td
+										p= order.name
+										
+									td
+										p= order.phone
+									td
+										p= order.address
+									td
+										a.btn.btn-info(href='/orders/'+order._id) Xem chi tiết
+										if(order.checked == true)                                        
+											span 
+											a.btn.btn-light(disable='') Đã duyệt
+										else                                     
+											span 
+											a.btn.btn-success(href='/users/edits/'+user._id) Duyệt đơn
+										span 
+										a.btn.btn-danger(href='/users/'+user._id+'/delete',onclick="return confirm('Bạn có muốn xoa không ?')") Huỷ Đơn
