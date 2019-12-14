@@ -11,5 +11,6 @@ router.get('/', async function(req,res){
 });
 router.get('/:id', orderController.get
 );
-
+router.get('/:id/delete',orderController.deleteOrder)
+router.get('/edits/:id',orderController.edit);
 module.exports = router;

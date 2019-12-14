@@ -1,0 +1,280 @@
+doctype html
+head
+  title Profile
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='description', content='OneTech shop project')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='stylesheet', type='text/css', href='/webpage/styles/bootstrap4/bootstrap.min.css')
+  link(href='/webpage/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css', rel='stylesheet', type='text/css')
+  link(rel='stylesheet', type='text/css', href='/webpage/styles/cart_styles.css')
+  link(rel='stylesheet', type='text/css', href='/webpage/styles/cart_responsive.css')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
+
+.super_container
+  // Header
+  header.header
+    // Top Bar
+    .top_bar
+      .container
+        .row
+          .col.d-flex.flex-row
+            .top_bar_contact_item
+              .top_bar_icon
+                img(src='/webpage/images/phone.png', alt='')
+              | +38 068 005 3570
+            .top_bar_contact_item
+              .top_bar_icon
+                img(src='/webpage/images/mail.png', alt='')
+              a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
+            .top_bar_content.ml-auto
+              .top_bar_user
+                if userG
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='#')= userG.name
+                  div
+                    a(href='/logout') Đăng xuất
+                else
+                  .user_icon
+                    img(src='/webpage/images/user.svg', alt='')
+                  div
+                    a(href='/resiger') Register
+                  div
+                    a(href='/login') Sign in
+    // Header Main
+    .header_main
+      .container
+        .row
+          // Logo
+          .col-lg-2.col-sm-3.col-3.order-1
+            .logo_container
+              .logo
+                a(href='#') TechShop
+                
+
+          // Search
+          .col-lg-6.col-12.order-lg-2.order-3.text-lg-left.text-right
+            .header_search
+              .header_search_content
+                .header_search_form_container
+                  form.header_search_form.clearfix(action='#')
+                    input.header_search_input(type='search', required='required', placeholder='Search for products...')
+                    .custom_dropdown
+                      .custom_dropdown_list
+                        span.custom_dropdown_placeholder.clc All Categories
+                        i.fas.fa-chevron-down
+                        ul.custom_list.clc
+                          li
+                            a.clc(href='#') All Categories
+                          if categorys
+                            each category in categorys
+                              li
+                                a.clc(href='#')= category.name
+                    button.header_search_button.trans_300(type='submit', value='Submit')
+                      img(src='/webpage/images/search.png', alt='')
+          // Wishlist
+          .col-lg-4.col-9.order-lg-3.order-2.text-lg-left.text-right
+            .wishlist_cart.d-flex.flex-row.align-items-center.justify-content-end
+              // Cart
+              .cart
+                .cart_container.d-flex.flex-row.align-items-center.justify-content-end
+                  .cart_icon
+                    img(src='/webpage/images/cart.png', alt='')
+                    .cart_count
+                      if session.cart
+                        span= session.cart.totalQty
+                      else
+                        span 0
+                  .cart_content
+                    .cart_text
+                      a(href='/cart') Cart
+                    
+    // Main Navigation
+    nav.main_nav
+      .container
+        .row
+          .col
+            .main_nav_content.d-flex.flex-row
+              // Categories Menu
+              .cat_menu_container
+                .cat_menu_title.d-flex.flex-row.align-items-center.justify-content-start
+                  .cat_burger
+                    span
+                    span
+                    span
+                  .cat_menu_text categories
+                ul.cat_menu
+                  if categorys
+                    each category in categorys
+                      li
+                        a(href='/productofcategorys/'+category._id)= category.name
+                          i.fas.fa-chevron-right.ml-auto
+              // Main Nav Menu
+              .main_nav_menu.ml-auto
+                ul.standard_dropdown.main_nav_dropdown
+                  li
+                    a(href='/')
+                      | Home
+                      i.fas.fa-chevron-down
+                  each category in categorys
+                    li
+                      a(href='/productofcategorys/'+category._id)= category.name
+                        
+                        i.fas.fa-chevron-down 
+              // Menu Trigger
+              .menu_trigger_container.ml-auto
+                .menu_trigger.d-flex.flex-row.align-items-center.justify-content-end
+                  .menu_burger
+                    .menu_trigger_text menu
+                    .cat_burger.menu_burger_inner
+                      span
+                      span
+                      span
+  // Cart
+  .cart_section
+    .container
+      .row
+        .col-lg-5.offset-lg-1
+          .cart_container
+            .cart_title Thông tin tài khoản
+            .cart_items
+              if userG
+                form.form-horizontal(action='/profile', method='POST')
+                    .form-group
+                        label.col-sm-3.control-label(for='name') Full Name
+                        .col-sm-6
+                        input#name.form-control.input-sm(type='text', name='name', value= userG.name)
+                    .form-group
+                        label.col-sm-2.control-label(for='phone') Phone
+                        .col-sm-6
+                        input#phone.form-control(type='text', name='phone', value=userG.phone)
+                    .form-group
+                        label.col-sm-2.control-label(for='address') Address
+                        .col-sm-6
+                        input#address.form-control(type='text', name='address', value=userG.address)
+                    .col-sm-offset-2
+                        button.btn.btn-success(type='submit') Cập nhật
+
+  // Newsletter
+  .newsletter
+    .container
+      .row
+        .col
+          .newsletter_container.d-flex.flex-lg-row.flex-column.align-items-lg-center.align-items-center.justify-content-lg-start.justify-content-center
+            .newsletter_title_container
+              .newsletter_icon
+                img(src='/webpage/images/send.png', alt='')
+              .newsletter_title Sign up for Newsletter
+              .newsletter_text
+                p ...and receive %20 coupon for first shopping.
+            .newsletter_content.clearfix
+              form.newsletter_form(action='#')
+                input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
+                button.newsletter_button Subscribe
+              .newsletter_unsubscribe_link
+                a(href='#') unsubscribe
+  // Footer
+  footer.footer
+    .container
+      .row
+        .col-lg-3.footer_col
+          .footer_column.footer_contact
+            .logo_container
+              .logo
+                a(href='#') OneTech
+            .footer_title Got Question? Call Us 24/7
+            .footer_phone +38 068 005 3570
+            .footer_contact_text
+              p 17 Princess Road, London
+              p Grester London NW18JR, UK
+            .footer_social
+              ul
+                li
+                  a(href='#')
+                    i.fab.fa-facebook-f
+                li
+                  a(href='#')
+                    i.fab.fa-twitter
+                li
+                  a(href='#')
+                    i.fab.fa-youtube
+                li
+                  a(href='#')
+                    i.fab.fa-google
+                li
+                  a(href='#')
+                    i.fab.fa-vimeo-v
+        .col-lg-2.offset-lg-2
+          .footer_column
+            .footer_title Find it Fast
+            ul.footer_list
+              li
+                a(href='#') Computers &amp; Laptops
+              li
+                a(href='#') Cameras &amp; Photos
+              li
+                a(href='#') Hardware
+              li
+                a(href='#') Smartphones &amp; Tablets
+              li
+                a(href='#') TV &amp; Audio
+        .col-lg-2
+          .footer_column
+            .footer_title Customer Care
+            ul.footer_list
+              li
+                a(href='#') My Account
+              li
+                a(href='#') Order Tracking
+              li
+                a(href='#') Wish List
+              li
+                a(href='#') Customer Services
+              li
+                a(href='#') Returns / Exchange
+              li
+                a(href='#') FAQs
+              li
+                a(href='#') Product Support
+  // Copyright
+  .copyright
+    .container
+      .row
+        .col
+          .copyright_container.d-flex.flex-sm-row.flex-column.align-items-center.justify-content-start
+            .copyright_content
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.fa.fa-heart(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com', target='_blank') Colorlib
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            .logos.ml-sm-auto
+              ul.logos_list
+                li
+                  a(href='#')
+                    img(src='/webpage/images/logos_1.png', alt='')
+                li
+                  a(href='#')
+                    img(src='/webpage/images/logos_2.png', alt='')
+                li
+                  a(href='#')
+                    img(src='/webpage/images/logos_3.png', alt='')
+                li
+                  a(href='#')
+                    img(src='/webpage/images/logos_4.png', alt='')
+script(src='/webpage/js/jquery-3.3.1.min.js')
+script(src='/webpage/styles/bootstrap4/popper.js')
+script(src='/webpage/styles/bootstrap4/bootstrap.min.js')
+script(src='/webpage/plugins/greensock/TweenMax.min.js')
+script(src='/webpage/plugins/greensock/TimelineMax.min.js')
+script(src='/webpage/plugins/scrollmagic/ScrollMagic.min.js')
+script(src='/webpage/plugins/greensock/animation.gsap.min.js')
+script(src='/webpage/plugins/greensock/ScrollToPlugin.min.js')
+script(src='/webpage/plugins/easing/easing.js')
+script(src='/webpage/js/cart_custom.js')

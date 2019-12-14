@@ -63,7 +63,7 @@ module.exports.viewProductByCateId = async function(req,res){
  module.exports.postResiger  = async function(req,res){
    req.body.pass = md5(req.body.pass);
 	await UserG.insertMany(req.body);
-   res.redirect('/');
+   res.redirect('/login');
  }
  module.exports.postLogin = async function(req,res){
    var email = req.body.your_email;
@@ -124,4 +124,19 @@ module.exports.viewProductByCateId = async function(req,res){
    // }
    // var categorys = await Category.find();
    //    res.render('webpage/checkout',{categorys: categorys})
+ }
+ module.exports.getProfile = async function(req,res){
+   var categorys = await Category.find();
+    res.render('webpage/profile',{categorys: categorys})
+ }
+ module.exports.postProfile = async function(req,res){
+   await UserG.findByIdAndUpdate({_id:req.signedCookies.userG},{
+		name:req.body.name,
+		phone:req.body.phone,
+		address:req.body.address,
+		update_time : new Date()
+	},function(err){
+		if(err)	res.json(err);
+		else	res.redirect('/profile');
+	})
  }

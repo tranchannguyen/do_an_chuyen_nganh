@@ -32,6 +32,8 @@ router.get('/cart',webpageController.cart);
 router.get('/cart/clear',webpageController.clear);
 router.get('/checkout',webpageController.checkout);
 router.post('/checkout',webpageController.postCheckout);
+router.get('/profile',webpageController.getProfile);
+router.post('/profile',webpageController.postProfile);
 
 
 // router.get('/search',userController.search);
