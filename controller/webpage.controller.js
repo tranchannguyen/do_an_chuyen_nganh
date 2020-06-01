@@ -13,6 +13,12 @@ module.exports.index = async function(req,res){
       categorys: categorys
    });
 }
+module.exports.contact = async function(req,res) {
+   var categorys = await Category.find();
+   res.render('webpage/contact',{
+      categorys: categorys
+   })
+}
 module.exports.viewAll = async function(req,res){
    var products = await Product.find();
    var categorys = await Category.find();

@@ -60,7 +60,7 @@ head
                 div
                   a(href='/register') Register
                 div
-                  a(href='#') Sign in
+                  a(href='/login') Sign in
     // Header Main
     .header_main
       .container
@@ -84,16 +84,10 @@ head
                         ul.custom_list.clc
                           li
                             a.clc(href='#') All Categories
-                          li
-                            a.clc(href='#') Computers
-                          li
-                            a.clc(href='#') Laptops
-                          li
-                            a.clc(href='#') Cameras
-                          li
-                            a.clc(href='#') Hardware
-                          li
-                            a.clc(href='#') Smartphones
+                          each cate in categorys
+                            li
+                              a.clc(href='/productofcategorys/'+cate._id))= cate.name
+                          
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='/webpage/images/search.png', alt='')
           // Wishlist
@@ -132,43 +126,15 @@ head
                     span
                   .cat_menu_text categories
                 ul.cat_menu
-                  li
-                    a(href='#')
-                      | Computers &amp; Laptops 
-                      i.fas.fa-chevron-right.ml-auto
-                  li
-                    a(href='#')
-                      | Cameras &amp; Photos
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Smartphones &amp; Tablets
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | TV &amp; Audio
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Gadgets
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Car Electronics
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Video Games &amp; Consoles
-                      i.fas.fa-chevron-right
-                  li
-                    a(href='#')
-                      | Accessories
-                      i.fas.fa-chevron-right
+                  each cate in categorys
+                    li
+                      a(href='#')= cate.name
+                        i.fas.fa-chevron-right.ml-auto
               // Main Nav Menu
               .main_nav_menu.ml-auto
                 ul.standard_dropdown.main_nav_dropdown
                   li
-                    a(href='#')
+                    a(href='/')
                       | Home
                       i.fas.fa-chevron-down
                   li
@@ -180,7 +146,7 @@ head
                       | Blog
                       i.fas.fa-chevron-down
                   li
-                    a(href='contact.html')
+                    a(href='/contact')
                       | Contact
                       i.fas.fa-chevron-down
               // Menu Trigger
@@ -268,7 +234,7 @@ head
                   a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
 
     block header
-  
+    block contact
     .newsletter
       .container
         .row
