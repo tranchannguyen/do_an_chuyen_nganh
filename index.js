@@ -12,6 +12,10 @@ var MongoStore = require('connect-mongo')(session);
 // var Category = require('./models/category.model')
 var app = express();
 var port = 3000;
+app.listen(port,function(){
+   console.log('Server listening on port 3000');
+   console.log('http://localhost:3000');
+});
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true,useUnifiedTopology: true}).then(
    () => {
@@ -74,6 +78,4 @@ app.use('/orders',authMidleware.requireAuth,orderRoute);
 app.use('/users',authMidleware.requireAuth,adminMidleware.requireAdmin,userRoute);
 app.use('/products',authMidleware.requireAuth,productRoute);
 app.use('/auth',authRoute);
-app.listen(port,function(){
-	console.log('Server listening on port 3000');
-});
+
