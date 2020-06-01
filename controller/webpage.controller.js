@@ -8,10 +8,16 @@ module.exports.index = async function(req,res){
 
    var products = await Product.find();
    var categorys = await Category.find();
-   res.render('index',{
+   res.render('in',{
       products: products,
       categorys: categorys
    });
+}
+module.exports.contact = async function(req,res) {
+   var categorys = await Category.find();
+   res.render('webpage/contact',{
+      categorys: categorys
+   })
 }
 module.exports.viewAll = async function(req,res){
    var products = await Product.find();
@@ -44,13 +50,13 @@ module.exports.viewProductByCateId = async function(req,res){
        catein: catein
     });
  }
- module.exports.resiger = function(req,res){
+ module.exports.register = function(req,res){
    if(req.signedCookies.userG)
 	{
 		res.redirect('/');
 		return;
-	}else console.log('not userG');
-   res.render('authG/resiger');
+	}else
+      res.render('authG/register');
  }
  module.exports.login = function(req,res){
    if(req.signedCookies.userG)
@@ -60,31 +66,39 @@ module.exports.viewProductByCateId = async function(req,res){
 	}else console.log('not userG');
    res.render('authG/signin');
  }
- module.exports.postResiger  = async function(req,res){
-   req.body.pass = md5(req.body.pass);
-	await UserG.insertMany(req.body);
-   res.redirect('/login');
+ module.exports.postRegister  = async function(req,res){
+      req.body.pass = md5(req.body.pass);
+      req.body.avatar = "";
+      req.body.phone = "";
+      req.body.address = "";
+      req.body.status = 'OPEN';
+      await UserG.insertMany(req.body);
+   res.render('authG/register',{
+      success : "Register success"
+   }) 
  }
+
+
  module.exports.postLogin = async function(req,res){
    var email = req.body.your_email;
 	var your_pass = req.body.your_pass;
 	
-	var userg = await UserG.find({email: email});
-	if(!userg[0]){
+	var userg = await UserG.findOne({email: email});
+	if(!userg){
 		res.render('/login',{
 			errors : ['User does not exit.']
 		});
 		return;
 	}
 	var haspassword = md5(your_pass);
-	if (userg[0].pass !== haspassword) {
+	if (userg.pass !== haspassword) {
 		// statement
 		res.render('/login',{
 			errors : ['Password not true.']
 		});
 		return;
 	}
-	res.cookie('userG',userg[0]._id,{signed:true});
+	res.cookie('userG',userg._id,{signed:true});
 	res.redirect('/');
  }
  module.exports.logout  = function(req,res){
@@ -119,11 +133,6 @@ module.exports.viewProductByCateId = async function(req,res){
     await Order.insertMany(req.body);
     res.clearCookie('connect.sid');
     res.redirect('/');
-   // if(!req.session.cart){
-   //    res.redirect('/cart')
-   // }
-   // var categorys = await Category.find();
-   //    res.render('webpage/checkout',{categorys: categorys})
  }
  module.exports.getProfile = async function(req,res){
    var categorys = await Category.find();

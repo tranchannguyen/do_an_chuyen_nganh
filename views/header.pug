@@ -6,7 +6,7 @@ head
   meta(name='description', content='OneTech shop project')
   meta(name='viewport', content='width=device-width, initial-scale=1')
   link(rel='stylesheet', type='text/css', href='/webpage/styles/bootstrap4/bootstrap.min.css')
-  link(href='/webpage/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css', rel='stylesheet', type='text/css')
+  link(href='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css', rel='stylesheet', type='text/css')
   link(rel='stylesheet', type='text/css', href='/webpage/plugins/OwlCarousel2-2.2.1/owl.carousel.css')
   link(rel='stylesheet', type='text/css', href='/webpage/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')
   link(rel='stylesheet', type='text/css', href='/webpage/plugins/OwlCarousel2-2.2.1/animate.css')
@@ -30,21 +30,37 @@ head
                 img(src='/webpage/images/mail.png', alt='')
               a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
             .top_bar_content.ml-auto
+              .top_bar_menu
+                ul.standard_dropdown.top_bar_dropdown
+                  li
+                    a(href='#')
+                      | English
+                      i.fas.fa-chevron-down
+                    ul
+                      li
+                        a(href='#') Italian
+                      li
+                        a(href='#') Spanish
+                      li
+                        a(href='#') Japanese
+                  li
+                    a(href='#')
+                      | $ US dollar
+                      i.fas.fa-chevron-down
+                    ul
+                      li
+                        a(href='#') EUR Euro
+                      li
+                        a(href='#') GBP British Pound
+                      li
+                        a(href='#') JPY Japanese Yen
               .top_bar_user
-                if userG
-                  .user_icon
-                    img(src='/webpage/images/user.svg', alt='')
-                  div
-                    a(href='#')= userG.name
-                  div
-                    a(href='/logout') Đăng xuất
-                else
-                  .user_icon
-                    img(src='/webpage/images/user.svg', alt='')
-                  div
-                    a(href='/resiger') Register
-                  div
-                    a(href='/login') Sign in
+                .user_icon
+                  img(src='/webpage/images/user.svg', alt='')
+                div
+                  a(href='/register') Register
+                div
+                  a(href='/login') Sign in
     // Header Main
     .header_main
       .container
@@ -53,7 +69,7 @@ head
           .col-lg-2.col-sm-3.col-3.order-1
             .logo_container
               .logo
-                a(href='/') TechShop
+                a(href='#') OneTech
           // Search
           .col-lg-6.col-12.order-lg-2.order-3.text-lg-left.text-right
             .header_search
@@ -68,29 +84,33 @@ head
                         ul.custom_list.clc
                           li
                             a.clc(href='#') All Categories
-                          if categorys
-                            each category in categorys
-                              li
-                                a.clc(href='#')= category.name
+                          each cate in categorys
+                            li
+                              a.clc(href='/productofcategorys/'+cate._id))= cate.name
+                          
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='/webpage/images/search.png', alt='')
           // Wishlist
           .col-lg-4.col-9.order-lg-3.order-2.text-lg-left.text-right
             .wishlist_cart.d-flex.flex-row.align-items-center.justify-content-end
+              .wishlist.d-flex.flex-row.align-items-center.justify-content-end
+                .wishlist_icon
+                  img(src='/webpage/images/heart.png', alt='')
+                .wishlist_content
+                  .wishlist_text
+                    a(href='#') Wishlist
+                  .wishlist_count 115
               // Cart
               .cart
                 .cart_container.d-flex.flex-row.align-items-center.justify-content-end
                   .cart_icon
                     img(src='/webpage/images/cart.png', alt='')
                     .cart_count
-                      if session.cart
-                        span= session.cart.totalQty
-                      else
-                        span 0
+                      span 10
                   .cart_content
                     .cart_text
-                      a(href='/cart') Cart
-
+                      a(href='#') Cart
+                    .cart_price $85
     // Main Navigation
     nav.main_nav
       .container
@@ -106,12 +126,10 @@ head
                     span
                   .cat_menu_text categories
                 ul.cat_menu
-                  if categorys
-                    each category in categorys
-                      li
-                        a(href='/productofcategorys/'+category._id)= category.name
-                          i.fas.fa-chevron-right.ml-auto
-                  
+                  each cate in categorys
+                    li
+                      a(href='#')= cate.name
+                        i.fas.fa-chevron-right.ml-auto
               // Main Nav Menu
               .main_nav_menu.ml-auto
                 ul.standard_dropdown.main_nav_dropdown
@@ -119,11 +137,18 @@ head
                     a(href='/')
                       | Home
                       i.fas.fa-chevron-down
-                  each category in categorys
-                    li
-                      a(href='/productofcategorys/'+category._id)= category.name
-                        
-                        i.fas.fa-chevron-down 
+                  li
+                    a(href='/viewAll')
+                      | Shop
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='#')
+                      | Blog
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='/contact')
+                      | Contact
+                      i.fas.fa-chevron-down
               // Menu Trigger
               .menu_trigger_container.ml-auto
                 .menu_trigger.d-flex.flex-row.align-items-center.justify-content-end
@@ -134,197 +159,218 @@ head
                       span
                       span
     // Menu
-  // Banner
-  .banner
-    .banner_background(style='background-image:url(/webpage/images/banner_background.jpg)')
-    .container.fill_height
-      .row.fill_height
-        .banner_product_image
-          img(src='/webpage/images/banner_product.png', alt='')
-        .col-lg-5.offset-lg-4.fill_height
-          .banner_content
-            h1.banner_text new era of smartphones
-            .banner_price
-              span $530
-              | $460
-            .banner_product_name Apple Iphone 6s
-            .button.banner_button
-              a(href='#') Shop Now
-  // Characteristics
-  .characteristics
-    .container
-      .row
-        // Char. Item
-        .col-lg-3.col-md-6.char_col
-          .char_item.d-flex.flex-row.align-items-center.justify-content-start
-            .char_icon
-              img(src='/webpage/images/char_1.png', alt='')
-            .char_content
-              .char_title Free Delivery
-              .char_subtitle from $50
-        // Char. Item
-        .col-lg-3.col-md-6.char_col
-          .char_item.d-flex.flex-row.align-items-center.justify-content-start
-            .char_icon
-              img(src='/webpage/images/char_2.png', alt='')
-            .char_content
-              .char_title Free Delivery
-              .char_subtitle from $50
-        // Char. Item
-        .col-lg-3.col-md-6.char_col
-          .char_item.d-flex.flex-row.align-items-center.justify-content-start
-            .char_icon
-              img(src='/webpage/images/char_3.png', alt='')
-            .char_content
-              .char_title Free Delivery
-              .char_subtitle from $50
-        // Char. Item
-        .col-lg-3.col-md-6.char_col
-          .char_item.d-flex.flex-row.align-items-center.justify-content-start
-            .char_icon
-              img(src='/webpage/images/char_4.png', alt='')
-            .char_content
-              .char_title Free Delivery
-              .char_subtitle from $50
-  // Popular Categories
-  .popular_categories
-    .container
-      .row
-        .col-lg-3
-          .popular_categories_content
-            .popular_categories_title Popular Categories
-            .popular_categories_slider_nav
-              .popular_categories_prev.popular_categories_nav
-                i.fas.fa-angle-left.ml-auto
-              .popular_categories_next.popular_categories_nav
-                i.fas.fa-angle-right.ml-auto
-            .popular_categories_link
-              a(href='#') full catalog
-        // Popular Categories Slider
-        .col-lg-9
-          .popular_categories_slider_container
-            .owl-carousel.owl-theme.popular_categories_slider
+    .page_menu
+      .container
+        .row
+          .col
+            .page_menu_content
+              .page_menu_search
+                form(action='#')
+                  input.page_menu_search_input(type='search', required='required', placeholder='Search for products...')
+              ul.page_menu_nav
+                li.page_menu_item.has-children
+                  a(href='#')
+                    | Language
+                    i.fa.fa-angle-down
+                  ul.page_menu_selection
+                    li
+                      a(href='#')
+                        | English
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | Italian
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | Spanish
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | Japanese
+                        i.fa.fa-angle-down
+                li.page_menu_item.has-children
+                  a(href='#')
+                    | Currency
+                    i.fa.fa-angle-down
+                  ul.page_menu_selection
+                    li
+                      a(href='#')
+                        | US Dollar
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | EUR Euro
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | GBP British Pound
+                        i.fa.fa-angle-down
+                    li
+                      a(href='#')
+                        | JPY Japanese Yen
+                        i.fa.fa-angle-down
+                li.page_menu_item
+                  a(href='#')
+                    | Home
+                    i.fa.fa-angle-down
+                //- li.page_menu_item.has-children
+                li.page_menu_item
+                  a(href='blog.html')
+                    | blog
+                    i.fa.fa-angle-down
+                li.page_menu_item
+                  a(href='contact.html')
+                    | contact
+                    i.fa.fa-angle-down
+              .menu_contact
+                .menu_contact_item
+                  .menu_contact_icon
+                    img(src='/webpage/images/phone_white.png', alt='')
+                  | +38 068 005 3570
+                .menu_contact_item
+                  .menu_contact_icon
+                    img(src='/webpage/images/mail_white.png', alt='')
+                  a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
 
-              // Popular Categories Item
-              .owl-item
-                .popular_category.d-flex.flex-column.align-items-center.justify-content-center
-                  .popular_category_image
-                    img(src='/webpage/images/popular_1.png', alt='')
-                  .popular_category_text Smartphones &amp; Tablets
-              // Popular Categories Item
-              .owl-item
-                .popular_category.d-flex.flex-column.align-items-center.justify-content-center
-                  .popular_category_image
-                    img(src='/webpage/images/popular_2.png', alt='')
-                  .popular_category_text Computers &amp; Laptops
-              // Popular Categories Item
-              .owl-item
-                .popular_category.d-flex.flex-column.align-items-center.justify-content-center
-                  .popular_category_image
-                    img(src='/webpage/images/popular_3.png', alt='')
-                  .popular_category_text Gadgets
-              // Popular Categories Item
-              .owl-item
-                .popular_category.d-flex.flex-column.align-items-center.justify-content-center
-                  .popular_category_image
-                    img(src='/webpage/images/popular_4.png', alt='')
-                  .popular_category_text Video Games &amp; Consoles
-              // Popular Categories Item
-              .owl-item
-                .popular_category.d-flex.flex-column.align-items-center.justify-content-center
-                  .popular_category_image
-                    img(src='/webpage/images/popular_5.png', alt='')
-                  .popular_category_text Accessories
     block header
-  
-                    
-                          
-      // Adverts
-      .adverts
-        .container
-          .row
-            .col-lg-4.advert_col
-              // Advert Item
-              .advert.d-flex.flex-row.align-items-center.justify-content-start
-                .advert_content
-                  .advert_title
-                    a(href='#') Trends 2018
-                  .advert_text Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.
-                .ml-auto
-                  .advert_image
-                    img(src='/webpage/images/adv_1.png', alt='')
-            .col-lg-4.advert_col
-              // Advert Item
-              .advert.d-flex.flex-row.align-items-center.justify-content-start
-                .advert_content
-                  .advert_subtitle Trends 2018
-                  .advert_title_2
-                    a(href='#') Sale -45%
-                  .advert_text Lorem ipsum dolor sit amet, consectetur.
-                .ml-auto
-                  .advert_image
-                    img(src='/webpage/images/adv_2.png', alt='')
-            .col-lg-4.advert_col
-              // Advert Item
-              .advert.d-flex.flex-row.align-items-center.justify-content-start
-                .advert_content
-                  .advert_title
-                    a(href='#') Trends 2018
-                  .advert_text Lorem ipsum dolor sit amet, consectetur.
-                .ml-auto
-                  .advert_image
-                    img(src='/webpage/images/adv_3.png', alt='')
-      // Brands
-      .brands
-        .container
-          .row
-            .col
-              .brands_slider_container
-                // Brands Slider
-                .owl-carousel.owl-theme.brands_slider
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_1.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_2.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_3.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_4.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_5.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_6.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_7.jpg', alt='')
-                  .owl-item
-                    .brands_item.d-flex.flex-column.justify-content-center
-                      img(src='/webpage/images/brands_8.jpg', alt='')
-                // Brands Slider Navigation
-                .brands_nav.brands_prev
-                  i.fas.fa-chevron-left
-                .brands_nav.brands_next
-                  i.fas.fa-chevron-right
-      // Newsletter
-      .newsletter
-        .container
-          .row
-            .col
-              .newsletter_container.d-flex.flex-lg-row.flex-column.align-items-lg-center.align-items-center.justify-content-lg-start.justify-content-center
-                .newsletter_title_container
-                  .newsletter_icon
-                    img(src='/webpage/images/send.png', alt='')
-                  .newsletter_title Sign up for Newsletter
-                  .newsletter_text
-                    p ...and receive %20 coupon for first shopping.
-                .newsletter_content.clearfix
-                  form.newsletter_form(action='#')
-                    input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
-                    button.newsletter_button Subscribe
-    
+    block contact
+    .newsletter
+      .container
+        .row
+          .col
+            .newsletter_container.d-flex.flex-lg-row.flex-column.align-items-lg-center.align-items-center.justify-content-lg-start.justify-content-center
+              .newsletter_title_container
+                .newsletter_icon
+                  img(src='images/send.png', alt='')
+                .newsletter_title Sign up for Newsletter
+                .newsletter_text
+                  p ...and receive %20 coupon for first shopping.
+              .newsletter_content.clearfix
+                form.newsletter_form(action='#')
+                  input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
+                  button.newsletter_button Subscribe
+                .newsletter_unsubscribe_link
+                  a(href='#') unsubscribe
+    // Footer
+    footer.footer
+      .container
+        .row
+          .col-lg-3.footer_col
+            .footer_column.footer_contact
+              .logo_container
+                .logo
+                  a(href='#') OneTech
+              .footer_title Got Question? Call Us 24/7
+              .footer_phone +38 068 005 3570
+              .footer_contact_text
+                p 17 Princess Road, London
+                p Grester London NW18JR, UK
+              .footer_social
+                ul
+                  li
+                    a(href='#')
+                      i.fab.fa-facebook-f
+                  li
+                    a(href='#')
+                      i.fab.fa-twitter
+                  li
+                    a(href='#')
+                      i.fab.fa-youtube
+                  li
+                    a(href='#')
+                      i.fab.fa-google
+                  li
+                    a(href='#')
+                      i.fab.fa-vimeo-v
+          .col-lg-2.offset-lg-2
+            .footer_column
+              .footer_title Find it Fast
+              ul.footer_list
+                li
+                  a(href='#') Computers &amp; Laptops
+                li
+                  a(href='#') Cameras &amp; Photos
+                li
+                  a(href='#') Hardware
+                li
+                  a(href='#') Smartphones &amp; Tablets
+                li
+                  a(href='#') TV &amp; Audio
+              .footer_subtitle Gadgets
+              ul.footer_list
+                li
+                  a(href='#') Car Electronics
+          .col-lg-2
+            .footer_column
+              ul.footer_list.footer_list_2
+                li
+                  a(href='#') Video Games &amp; Consoles
+                li
+                  a(href='#') Accessories
+                li
+                  a(href='#') Cameras &amp; Photos
+                li
+                  a(href='#') Hardware
+                li
+                  a(href='#') Computers &amp; Laptops
+          .col-lg-2
+            .footer_column
+              .footer_title Customer Care
+              ul.footer_list
+                li
+                  a(href='#') My Account
+                li
+                  a(href='#') Order Tracking
+                li
+                  a(href='#') Wish List
+                li
+                  a(href='#') Customer Services
+                li
+                  a(href='#') Returns / Exchange
+                li
+                  a(href='#') FAQs
+                li
+                  a(href='#') Product Support
+    // Copyright
+    .copyright
+      .container
+        .row
+          .col
+            .copyright_container.d-flex.flex-sm-row.flex-column.align-items-center.justify-content-start
+              .copyright_content
+                // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+                | Copyright &copy;
+                script.
+                  document.write(new Date().getFullYear());
+                |  All rights reserved | This template is made with 
+                i.fa.fa-heart(aria-hidden='true')
+                |  by 
+                a(href='https://colorlib.com', target='_blank') Colorlib
+                // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              .logos.ml-sm-auto
+                ul.logos_list
+                  li
+                    a(href='#')
+                      img(src='/webpage/images/logos_1.png', alt='')
+                  li
+                    a(href='#')
+                      img(src='/webpage/images/logos_2.png', alt='')
+                  li
+                    a(href='#')
+                      img(src='/webpage/images/logos_3.png', alt='')
+                  li
+                    a(href='#')
+                      img(src='/webpage/images/logos_4.png', alt='')
+  script(src='/webpage/js/jquery-3.3.1.min.js')
+  script(src='/webpage/styles/bootstrap4/popper.js')
+  script(src='/webpage/styles/bootstrap4/bootstrap.min.js')
+  script(src='/webpage/plugins/greensock/TweenMax.min.js')
+  script(src='/webpage/plugins/greensock/TimelineMax.min.js')
+  script(src='/webpage/plugins/scrollmagic/ScrollMagic.min.js')
+  script(src='/webpage/plugins/greensock/animation.gsap.min.js')
+  script(src='/webpage/plugins/greensock/ScrollToPlugin.min.js')
+  script(src='/webpage/plugins/OwlCarousel2-2.2.1/owl.carousel.js')
+  script(src='/webpage/plugins/slick-1.8.0/slick.js')
+  script(src='/webpage/plugins/easing/easing.js')
+  script(src='/webpage/js/custom.js')

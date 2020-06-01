@@ -15,27 +15,25 @@ module.exports.logout = function(req,res){
 	res.render('auth/login');	
 }
 
-module.exports.postlogin = async function(req,res,next){
+module.exports.postlogin = async function(req,res){
 	var email = req.body.email;
 	var password = req.body.password;
 	
-	var users = await User.find({email: email});
-	if(!users[0]){
+	var users = await User.findOne({email: email});
+	if(!users){
 		res.render('auth/login',{
 			errors : ['User does not exit.']
 		});
 		return;
 	}
 	var haspassword = md5(password);
-	if (users[0].password !== haspassword) {
+	if (users.password !== haspassword) {
 		// statement
 		res.render('auth/login',{
 			errors : ['Password not true.']
 		});
 		return;
 	}
-	res.cookie('userEmail',users[0].email,{signed:true});
-	if(users[0].admin == true){
-		res.redirect('/users');
-	}else res.redirect('/products');
+	res.cookie('userEmail',users.email,{signed:true});
+	res.redirect('/products');
 }

@@ -9,9 +9,10 @@ router.get('/',webpageController.index);
 router.get('/viewAll',webpageController.viewAll);
 router.get('/productofcategorys/:id',webpageController.viewProductByCateId);
 router.get('/viewDetailProduct/:id',webpageController.viewProductById);
-router.get('/resiger',webpageController.resiger)
-router.post('/resiger',webpageController.postResiger)
+router.get('/register',webpageController.register)
+router.post('/register',webpageController.postRegister)
 router.get('/login',webpageController.login)
+router.get('/contact',webpageController.contact)
 router.post('/login',webpageController.postLogin)
 router.get('/logout',webpageController.logout)
 router.get('/add-to-cart/:id', function(req, res, next) {
