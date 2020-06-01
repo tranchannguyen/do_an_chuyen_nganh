@@ -32,31 +32,4 @@ block content
                                     label.col-sm-2.control-label(for="address") Address
                                     .col-sm-5
                                         input#address.form-control(disabled='',type="text",name="address", placeholder = user.address)
-                                if(user.admin==true)
-                                    .form-group
-                                        .col-sm-offset-2.col-sm-10
-                                            .checkbox
-                                                label
-                                                    input(disabled='',disanle type='checkbox',name="admin",checked="" )
-                                                    |  Master
-                                        .col-sm-offset-2.col-sm-10
-                                            .checkbox
-                                                label
-                                                    input(disabled='',disanle type='checkbox',name="admin" )
-                                                    |  Admin
-                                else
-                                    .form-group
-                                        .col-sm-offset-2.col-sm-10
-                                            .checkbox
-                                                label
-                                                    input(disabled='',disanle type='checkbox',name="admin"
-                                                     )
-                                                    |  Master
-                                        .col-sm-offset-2.col-sm-10
-                                            .checkbox
-                                                label
-                                                    input(disabled='',disanle type='checkbox',name="admin",checked="" )
-                                                    |  Admin 
-                                .col-sm-offset-2
-                                    a.btn.btn-danger(href='/users/edits/'+user.id) Edit
                             a.btn.btn-primary(href='/users') Quay lại

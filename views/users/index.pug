@@ -6,8 +6,6 @@ block content
 					.panel-body.widget-shadow
 						h1 Danh sách user
 						br
-						br  
-						a.btn.btn-success.mt-5.mb-5(href="/users/create") Create
 								
 						table.table.table-hove
 							thead
@@ -15,20 +13,20 @@ block content
 									th Name
 									th Avatar
 									th Email
+									th Status
 									th Action
 							tbody
 							each user in users
 								tr
 									td
 										p(text-align='center')= user.name
-										
 									td
 										img.border.border-success.rounded-lg(src=user.avatar, width="64",height ="64")
 									td
 										i= user.email
 									td
+										a.btn.btn-success= "status"
+									td
 										a.btn.btn-success(href='/users/'+user._id) View
-										span 
-										a.btn.btn-info(href='/users/edits/'+user._id) Edit
 										span 
 										a.btn.btn-danger(href='/users/'+user._id+'/delete',onclick="return confirm('Bạn có muốn xoa không ?')") Delete
