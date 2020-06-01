@@ -1,7 +1,7 @@
 var User = require('../models/user.model')
 var md5 = require('md5')
-var mongo = require('mongodb').MongoClient;
-var objectId  = require('mongodb').ObjectId;
+
+
 module.exports.login = 	function(req,res){
 	if(req.signedCookies.userEmail)
 	{
@@ -14,6 +14,7 @@ module.exports.logout = function(req,res){
 	res.clearCookie('userEmail')
 	res.render('auth/login');	
 }
+
 module.exports.postlogin = async function(req,res,next){
 	var email = req.body.email;
 	var password = req.body.password;
@@ -33,10 +34,8 @@ module.exports.postlogin = async function(req,res,next){
 		});
 		return;
 	}
-
 	res.cookie('userEmail',users[0].email,{signed:true});
 	if(users[0].admin == true){
 		res.redirect('/users');
 	}else res.redirect('/products');
-	
 }
