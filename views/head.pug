@@ -83,16 +83,9 @@ head
                         ul.custom_list.clc
                           li
                             a.clc(href='#') All Categories
-                          li
-                            a.clc(href='#') Computers
-                          li
-                            a.clc(href='#') Laptops
-                          li
-                            a.clc(href='#') Cameras
-                          li
-                            a.clc(href='#') Hardware
-                          li
-                            a.clc(href='#') Smartphones
+                          each cate in categorys
+                            li
+                              a.clc(href='#')= cate.name
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='/webpage/images/search.png', alt='')
           // Wishlist
@@ -131,10 +124,10 @@ head
                     span
                   .cat_menu_text categories
                 ul.cat_menu
-                  li
-                    a(href='#')
-                      | Computers &amp; Laptops 
-                      i.fas.fa-chevron-right.ml-auto
+                  each cate in categorys
+                    li
+                      a(href='#')= cate.name
+                        i.fas.fa-chevron-right.ml-auto
                   
               // Main Nav Menu
               .main_nav_menu.ml-auto
@@ -148,7 +141,7 @@ head
                       | Shop
                       i.fas.fa-chevron-down    
                   li
-                    a(href='blog.html')
+                    a(href='/blog')
                       | Blog
                       i.fas.fa-chevron-down
                   li
@@ -172,17 +165,17 @@ head
             .col
               .newsletter_container.d-flex.flex-lg-row.flex-column.align-items-lg-center.align-items-center.justify-content-lg-start.justify-content-center
                 .newsletter_title_container
-                .newsletter_icon
-                    img(src='/webpage/images/send.png', alt='')
-                .newsletter_title Sign up for Newsletter
-                .newsletter_text
-                    p ...and receive %20 coupon for first shopping.
+                    .newsletter_icon
+                        img(src='/webpage/images/send.png', alt='')
+                    .newsletter_title Sign up for Newsletter
+                    .newsletter_text
+                        p ...and receive %20 coupon for first shopping.
                 .newsletter_content.clearfix
-                form.newsletter_form(action='#')
-                    input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
-                    button.newsletter_button Subscribe
-                .newsletter_unsubscribe_link
-                    a(href='#') unsubscribe
+                    form.newsletter_form(action='#')
+                        input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
+                        button.newsletter_button Subscribe
+                    .newsletter_unsubscribe_link
+                        a(href='#') unsubscribe
     // Footer
     footer.footer
         .container
@@ -190,13 +183,13 @@ head
             .col-lg-3.footer_col
               .footer_column.footer_contact
                 .logo_container
-                .logo
-                    a(href='#') OneTech
-                .footer_title Got Question? Call Us 24/7
-                .footer_phone +38 068 005 3570
-                .footer_contact_text
-                    p 17 Princess Road, London
-                    p Grester London NW18JR, UK
+                    .logo
+                        a(href='#') OneTech
+                    .footer_title Got Question? Call Us 24/7
+                    .footer_phone +38 068 005 3570
+                    .footer_contact_text
+                        p 17 Princess Road, London
+                        p Grester London NW18JR, UK
                 .footer_social
                 ul
                     li
@@ -228,7 +221,6 @@ head
                     a(href='#') Smartphones &amp; Tablets
                 li
                     a(href='#') TV &amp; Audio
-                .footer_subtitle Gadgets
                 ul.footer_list
                 li
                     a(href='#') Car Electronics
@@ -280,19 +272,19 @@ head
                 a(href='https://colorlib.com', target='_blank') Colorlib
                 // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
                 .logos.ml-sm-auto
-                ul.logos_list
-                    li
-                    a(href='#')
-                        img(src='/webpage/images/logos_1.png', alt='')
-                    li
-                    a(href='#')
-                        img(src='/webpage/images/logos_2.png', alt='')
-                    li
-                    a(href='#')
-                        img(src='/webpage/images/logos_3.png', alt='')
-                    li
-                    a(href='#')
-                        img(src='/webpage/images/logos_4.png', alt='')
+                    ul.logos_list
+                        li
+                            a(href='#')
+                                img(src='/webpage/images/logos_1.png', alt='')
+                        li
+                            a(href='#')
+                                img(src='/webpage/images/logos_2.png', alt='')
+                        li
+                            a(href='#')
+                                img(src='/webpage/images/logos_3.png', alt='')
+                        li
+                            a(href='#')
+                                img(src='/webpage/images/logos_4.png', alt='')
     script(src='/webpage/js/jquery-3.3.1.min.js')
     script(src='/webpage/styles/bootstrap4/popper.js')
     script(src='/webpage/styles/bootstrap4/bootstrap.min.js')

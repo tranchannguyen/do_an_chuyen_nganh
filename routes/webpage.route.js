@@ -13,6 +13,7 @@ router.get('/register',webpageController.register)
 router.post('/register',webpageController.postRegister)
 router.get('/login',webpageController.login)
 router.get('/contact',webpageController.contact)
+router.get('/blog',webpageController.blog)
 router.post('/login',webpageController.postLogin)
 router.get('/logout',webpageController.logout)
 router.get('/add-to-cart/:id', function(req, res, next) {

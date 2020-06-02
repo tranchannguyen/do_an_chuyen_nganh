@@ -1,0 +1,556 @@
+doctype html
+head
+  title Shop
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='description', content='OneTech shop project')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='stylesheet', type='text/css', href='../webpage/styles/bootstrap4/bootstrap.min.css')
+  link(href='../webpage/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css', rel='stylesheet', type='text/css')
+  link(rel='stylesheet', type='text/css', href='../webpage/plugins/OwlCarousel2-2.2.1/owl.carousel.css')
+  link(rel='stylesheet', type='text/css', href='../webpage/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')
+  link(rel='stylesheet', type='text/css', href='../webpage/plugins/OwlCarousel2-2.2.1/animate.css')
+  link(rel='stylesheet', type='text/css', href='../webpage/plugins/jquery-ui-1.12.1.custom/jquery-ui.css')
+  link(rel='stylesheet', type='text/css', href='../webpage/styles/shop_styles.css')
+  link(rel='stylesheet', type='text/css', href='../webpage/styles/shop_responsive.css')
+.super_container
+  // Header
+  header.header
+    // Top Bar
+    .top_bar
+      .container
+        .row
+          .col.d-flex.flex-row
+            .top_bar_contact_item
+              .top_bar_icon
+                img(src='../webpage/images/phone.png', alt='')
+              | +38 068 005 3570
+            .top_bar_contact_item
+              .top_bar_icon
+                img(src='../webpage/images/mail.png', alt='')
+              a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
+            .top_bar_content.ml-auto
+              .top_bar_menu
+                ul.standard_dropdown.top_bar_dropdown
+                  li
+                    a(href='#')
+                      | English
+                      i.fas.fa-chevron-down
+                    ul
+                      li
+                        a(href='#') Italian
+                      li
+                        a(href='#') Spanish
+                      li
+                        a(href='#') Japanese
+                  li
+                    a(href='#')
+                      | $ US dollar
+                      i.fas.fa-chevron-down
+                    ul
+                      li
+                        a(href='#') EUR Euro
+                      li
+                        a(href='#') GBP British Pound
+                      li
+                        a(href='#') JPY Japanese Yen
+              .top_bar_user
+                .user_icon
+                  img(src='../webpage/images/user.svg', alt='')
+                div
+                  a(href='/register') Register
+                div
+                  a(href='/login') Sign in
+    // Header Main
+    .header_main
+      .container
+        .row
+          // Logo
+          .col-lg-2.col-sm-3.col-3.order-1
+            .logo_container
+              .logo
+                a(href='/') OneTech
+          // Search
+          .col-lg-6.col-12.order-lg-2.order-3.text-lg-left.text-right
+            .header_search
+              .header_search_content
+                .header_search_form_container
+                  form.header_search_form.clearfix(action='#')
+                    input.header_search_input(type='search', required='required', placeholder='Search for products...')
+                    .custom_dropdown
+                      .custom_dropdown_list
+                        span.custom_dropdown_placeholder.clc All Categories
+                        i.fas.fa-chevron-down
+                        ul.custom_list.clc
+                          li
+                            a.clc(href='#') All Categories
+                          li
+                            a.clc(href='#') Computers
+                          li
+                            a.clc(href='#') Laptops
+                          li
+                            a.clc(href='#') Cameras
+                          li
+                            a.clc(href='#') Hardware
+                          li
+                            a.clc(href='#') Smartphones
+                    button.header_search_button.trans_300(type='submit', value='Submit')
+                      img(src='../webpage/images/search.png', alt='')
+          // Wishlist
+          .col-lg-4.col-9.order-lg-3.order-2.text-lg-left.text-right
+            .wishlist_cart.d-flex.flex-row.align-items-center.justify-content-end
+              .wishlist.d-flex.flex-row.align-items-center.justify-content-end
+                .wishlist_icon
+                  img(src='../webpage/images/heart.png', alt='')
+                .wishlist_content
+                  .wishlist_text
+                    a(href='#') Wishlist
+                  .wishlist_count 115
+              // Cart
+              .cart
+                .cart_container.d-flex.flex-row.align-items-center.justify-content-end
+                  .cart_icon
+                    img(src='../webpage/images/cart.png', alt='')
+                    .cart_count
+                      span 10
+                  .cart_content
+                    .cart_text
+                      a(href='#') Cart
+                    .cart_price $85
+    // Main Navigation
+    nav.main_nav
+      .container
+        .row
+          .col
+            .main_nav_content.d-flex.flex-row
+              
+              // Categories Menu
+              .cat_menu_container
+                .cat_menu_title.d-flex.flex-row.align-items-center.justify-content-start
+                  .cat_burger
+                    span
+                    span
+                    span
+                  .cat_menu_text categories
+                ul.cat_menu
+                  each cate in categorys
+                    li
+                      a(href='/productofcategorys/'+cate._id)= cate.name
+                        i.fas.fa-chevron-right.ml-auto
+                        
+              .main_nav_menu.ml-auto
+                ul.standard_dropdown.main_nav_dropdown
+                  li
+                    a(href='/')
+                      | Home
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='/shop')
+                      | Shop
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='/blog')
+                      | Blog
+                      i.fas.fa-chevron-down
+                  li
+                    a(href='/contact')
+                      | Contact
+                      i.fas.fa-chevron-down
+              // Menu Trigger
+              .menu_trigger_container.ml-auto
+                .menu_trigger.d-flex.flex-row.align-items-center.justify-content-end
+                  .menu_burger
+                    .menu_trigger_text menu
+                    .cat_burger.menu_burger_inner
+                      span
+                      span
+                      span
+   
+  // Home
+  .home
+    .home_background.parallax-window(data-parallax='scroll', data-image-src='images/shop_background.jpg')
+    .home_overlay
+    .home_content.d-flex.flex-column.align-items-center.justify-content-center
+      h2.home_title Smartphones &amp; Tablets
+  // Shop
+  .shop
+    .container
+      .row
+        .col-lg-3
+          // Shop Sidebar
+          .shop_sidebar
+            .sidebar_section
+              .sidebar_title Categories
+              ul.sidebar_categories
+                each cate in categorys
+                    li
+                      a(href='/productofcategorys/'+cate._id)= cate.name
+            .sidebar_section.filter_by_section
+              .sidebar_title Filter By
+              .sidebar_subtitle Price
+              .filter_price
+                #slider-range.slider_range
+                p Range: 
+                p
+                  input#amount.amount(type='text', readonly='', style='border:0; font-weight:bold;')
+            .sidebar_section
+              .sidebar_subtitle.brands_subtitle Brands
+              ul.brands_list
+                li.brand
+                  a(href='#') Apple
+                li.brand
+                  a(href='#') Beoplay
+                li.brand
+                  a(href='#') Google
+                li.brand
+                  a(href='#') Meizu
+                li.brand
+                  a(href='#') OnePlus
+                li.brand
+                  a(href='#') Samsung
+                li.brand
+                  a(href='#') Sony
+                li.brand
+                  a(href='#') Xiaomi
+        .col-lg-9
+          // Shop Content
+          .shop_content
+            .shop_bar.clearfix
+              .shop_product_count
+                span 186
+                |  products found
+              .shop_sorting
+                span Sort by:
+                ul
+                  li
+                    span.sorting_text
+                      | highest rated
+                      i.fas.fa-chevron-down
+                    ul
+                      li.shop_sorting_button(data-isotope-option='{ "sortBy": "original-order" }') highest rated
+                      li.shop_sorting_button(data-isotope-option='{ "sortBy": "name" }') name
+                      li.shop_sorting_button(data-isotope-option='{ "sortBy": "price" }') price
+            .product_grid
+              .product_grid_border
+              // Product Item
+              each prod in products
+                .product_item.is_new
+                  .product_border
+                  .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                    img(src=prod.pro_image, alt='')
+                  .product_content
+                    .product_price= prod.price
+                    .product_name
+                      div
+                        a(href='#', tabindex='0')= prod.name
+                  .product_fav
+                    i.fas.fa-heart
+                  ul.product_marks
+                    li.product_mark.product_discount -25%
+                    li.product_mark.product_new new
+              // Product Item
+              .product_item.discount
+                .product_border
+                .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                  img(src='../webpage/images/featured_1.png', alt='')
+                .product_content
+                  .product_price
+                    | $225
+                    span $300
+                  .product_name
+                    div
+                      a(href='#', tabindex='0') Huawei MediaPad...
+                .product_fav
+                  i.fas.fa-heart
+                ul.product_marks
+                  li.product_mark.product_discount -25%
+                  li.product_mark.product_new new
+              
+              
+            // Shop Page Navigation
+            .shop_page_nav.d-flex.flex-row
+              .page_prev.d-flex.flex-column.align-items-center.justify-content-center
+                i.fas.fa-chevron-left
+              ul.page_nav.d-flex.flex-row
+                li
+                  a(href='#') 1
+                li
+                  a(href='#') 2
+                li
+                  a(href='#') 3
+                li
+                  a(href='#') ...
+                li
+                  a(href='#') 21
+              .page_next.d-flex.flex-column.align-items-center.justify-content-center
+                i.fas.fa-chevron-right
+  // Recently Viewed
+  .viewed
+    .container
+      .row
+        .col
+          .viewed_title_container
+            h3.viewed_title Recently Viewed
+            .viewed_nav_container
+              .viewed_nav.viewed_prev
+                i.fas.fa-chevron-left
+              .viewed_nav.viewed_next
+                i.fas.fa-chevron-right
+          .viewed_slider_container
+            // Recently Viewed Slider
+            .owl-carousel.owl-theme.viewed_slider
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.discount.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_1.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price
+                      | $225
+                      span $300
+                    .viewed_name
+                      a(href='#') Beoplay H7
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_2.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price $379
+                    .viewed_name
+                      a(href='#') LUNA Smartphone
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_3.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price $225
+                    .viewed_name
+                      a(href='#') Samsung J730F...
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_4.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price $379
+                    .viewed_name
+                      a(href='#') Huawei MediaPad...
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.discount.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_5.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price
+                      | $225
+                      span $300
+                    .viewed_name
+                      a(href='#') Sony PS4 Slim
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+              // Recently Viewed Item
+              .owl-item
+                .viewed_item.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                  .viewed_image
+                    img(src='../webpage/images/view_6.jpg', alt='')
+                  .viewed_content.text-center
+                    .viewed_price $375
+                    .viewed_name
+                      a(href='#') Speedlink...
+                  ul.item_marks
+                    li.item_mark.item_discount -25%
+                    li.item_mark.item_new new
+  // Brands
+  .brands
+    .container
+      .row
+        .col
+          .brands_slider_container
+            // Brands Slider
+            .owl-carousel.owl-theme.brands_slider
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_1.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_2.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_3.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_4.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_5.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_6.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='../webpage/images/brands_7.jpg', alt='')
+              .owl-item
+                .brands_item.d-flex.flex-column.justify-content-center
+                  img(src='images/brands_8.jpg', alt='')
+            // Brands Slider Navigation
+            .brands_nav.brands_prev
+              i.fas.fa-chevron-left
+            .brands_nav.brands_next
+              i.fas.fa-chevron-right
+  // Newsletter
+  .newsletter
+    .container
+      .row
+        .col
+          .newsletter_container.d-flex.flex-lg-row.flex-column.align-items-lg-center.align-items-center.justify-content-lg-start.justify-content-center
+            .newsletter_title_container
+              .newsletter_icon
+                img(src='../webpage/images/send.png', alt='')
+              .newsletter_title Sign up for Newsletter
+              .newsletter_text
+                p ...and receive %20 coupon for first shopping.
+            .newsletter_content.clearfix
+              form.newsletter_form(action='#')
+                input.newsletter_input(type='email', required='required', placeholder='Enter your email address')
+                button.newsletter_button Subscribe
+              .newsletter_unsubscribe_link
+                a(href='#') unsubscribe
+  // Footer
+  footer.footer
+    .container
+      .row
+        .col-lg-3.footer_col
+          .footer_column.footer_contact
+            .logo_container
+              .logo
+                a(href='#') OneTech
+            .footer_title Got Question? Call Us 24/7
+            .footer_phone +38 068 005 3570
+            .footer_contact_text
+              p 17 Princess Road, London
+              p Grester London NW18JR, UK
+            .footer_social
+              ul
+                li
+                  a(href='#')
+                    i.fab.fa-facebook-f
+                li
+                  a(href='#')
+                    i.fab.fa-twitter
+                li
+                  a(href='#')
+                    i.fab.fa-youtube
+                li
+                  a(href='#')
+                    i.fab.fa-google
+                li
+                  a(href='#')
+                    i.fab.fa-vimeo-v
+        .col-lg-2.offset-lg-2
+          .footer_column
+            .footer_title Find it Fast
+            ul.footer_list
+              li
+                a(href='#') Computers &amp; Laptops
+              li
+                a(href='#') Cameras &amp; Photos
+              li
+                a(href='#') Hardware
+              li
+                a(href='#') Smartphones &amp; Tablets
+              li
+                a(href='#') TV &amp; Audio
+            .footer_subtitle Gadgets
+            ul.footer_list
+              li
+                a(href='#') Car Electronics
+        .col-lg-2
+          .footer_column
+            ul.footer_list.footer_list_2
+              li
+                a(href='#') Video Games &amp; Consoles
+              li
+                a(href='#') Accessories
+              li
+                a(href='#') Cameras &amp; Photos
+              li
+                a(href='#') Hardware
+              li
+                a(href='#') Computers &amp; Laptops
+        .col-lg-2
+          .footer_column
+            .footer_title Customer Care
+            ul.footer_list
+              li
+                a(href='#') My Account
+              li
+                a(href='#') Order Tracking
+              li
+                a(href='#') Wish List
+              li
+                a(href='#') Customer Services
+              li
+                a(href='#') Returns / Exchange
+              li
+                a(href='#') FAQs
+              li
+                a(href='#') Product Support
+  // Copyright
+  .copyright
+    .container
+      .row
+        .col
+          .copyright_container.d-flex.flex-sm-row.flex-column.align-items-center.justify-content-start
+            .copyright_content
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              | Copyright &copy;
+              script.
+                document.write(new Date().getFullYear());
+              |  All rights reserved | This template is made with 
+              i.fa.fa-heart(aria-hidden='true')
+              |  by 
+              a(href='https://colorlib.com', target='_blank') Colorlib
+              // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            .logos.ml-sm-auto
+              ul.logos_list
+                li
+                  a(href='#')
+                    img(src='../webpage/images/logos_1.png', alt='')
+                li
+                  a(href='#')
+                    img(src='../webpage/images/logos_2.png', alt='')
+                li
+                  a(href='#')
+                    img(src='../webpage/images/logos_3.png', alt='')
+                li
+                  a(href='#')
+                    img(src='../webpage/images/logos_4.png', alt='')
+script(src='../webpage/js/jquery-3.3.1.min.js')
+script(src='../webpage/styles/bootstrap4/popper.js')
+script(src='../webpage/styles/bootstrap4/bootstrap.min.js')
+script(src='../webpage/plugins/greensock/TweenMax.min.js')
+script(src='../webpage/plugins/greensock/TimelineMax.min.js')
+script(src='../webpage/plugins/scrollmagic/ScrollMagic.min.js')
+script(src='../webpage/plugins/greensock/animation.gsap.min.js')
+script(src='../webpage/plugins/greensock/ScrollToPlugin.min.js')
+script(src='../webpage/plugins/OwlCarousel2-2.2.1/owl.carousel.js')
+script(src='../webpage/plugins/easing/easing.js')
+script(src='../webpage/plugins/Isotope/isotope.pkgd.min.js')
+script(src='../webpage/plugins/jquery-ui-1.12.1.custom/jquery-ui.js')
+script(src='../webpage/plugins/parallax-js-master/parallax.min.js')
+script(src='../webpage/js/shop_custom.js')

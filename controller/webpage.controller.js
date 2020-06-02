@@ -13,6 +13,12 @@ module.exports.index = async function(req,res){
       categorys: categorys
    });
 }
+module.exports.blog = async function(req,res) {
+   var categorys = await Category.find();
+   res.render('webpage/blog',{
+      categorys: categorys
+   })
+}
 module.exports.contact = async function(req,res) {
    var categorys = await Category.find();
    res.render('webpage/contact',{
@@ -22,7 +28,7 @@ module.exports.contact = async function(req,res) {
 module.exports.viewAll = async function(req,res){
    var products = await Product.find();
    var categorys = await Category.find();
-   res.render('webpage/allProducts',{
+   res.render('webpage/shop',{
       products: products,
       categorys: categorys
    });

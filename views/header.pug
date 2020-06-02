@@ -86,7 +86,7 @@ head
                             a.clc(href='#') All Categories
                           each cate in categorys
                             li
-                              a.clc(href='/productofcategorys/'+cate._id))= cate.name
+                              a.clc(href='#')= cate.name
                           
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='/webpage/images/search.png', alt='')
@@ -128,7 +128,7 @@ head
                 ul.cat_menu
                   each cate in categorys
                     li
-                      a(href='#')= cate.name
+                      a(href='/productofcategorys/'+cate._id)= cate.name
                         i.fas.fa-chevron-right.ml-auto
               // Main Nav Menu
               .main_nav_menu.ml-auto
@@ -142,7 +142,7 @@ head
                       | Shop
                       i.fas.fa-chevron-down
                   li
-                    a(href='#')
+                    a(href='/blog')
                       | Blog
                       i.fas.fa-chevron-down
                   li
