@@ -22,7 +22,7 @@ module.exports.deleteProduct = async function(req,res){
 // 	});
 //     res.render('users/index',{ users: users });
 // }
-module.exports.edit =async function(req,res){
+module.exports.edit = async function(req,res){
 	var id = req.params.id;
 	var products = await Product.find({_id: id});
 	var category = await Category.find();
@@ -40,7 +40,7 @@ module.exports.postEdit = async function(req,res){
 		price:req.body.price,
 		quantity:req.body.quantity,
 		idCate: req.body.idCate,
-		decription:req.body.decription,
+		description:req.body.description,
 		popular:req.body.popular,
 		status:req.body.status,
 		update_time : new Date()
@@ -49,24 +49,23 @@ module.exports.postEdit = async function(req,res){
 		else	res.redirect('/products/'+req.params.id);
 	})
 }
+
 module.exports.create = async function(req,res){
 	var cates = await Category.find();
 	res.render('products/create',{cates: cates});
 }
-module.exports.get = async function(req,res){
-	
-	var id = req.params.id;
-	var products = await Product.find({_id: id});
-	var cates = await Category.find();
-	res.render('products/detailProduct',
-		{ products: products,cates: cates },
-		);
 
+module.exports.get = async function(req,res){
+	var id = req.params.id;
+	var products = await Product.findOne({_id: id});
+	var cates = await Category.findOne({_id : products.idCate});
+	res.render('products/detailProduct',
+		{ products: products, cates: cates },
+		);
 }
+
 module.exports.postCreate = async function(req,res){
-	
-	req.body.pro_image = req.file.path.split('\\').slice(1).join('/');
-	req.body.popular = Boolean(req.body.popular);
+	req.body.images = req.file.path.split('\\').slice(1).join('/');
 	if(req.body.quantity > 0)
 	{
 		req.body.status = true;

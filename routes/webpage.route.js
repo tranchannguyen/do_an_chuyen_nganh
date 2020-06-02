@@ -15,6 +15,7 @@ router.get('/login',webpageController.login)
 router.get('/contact',webpageController.contact)
 router.get('/blog',webpageController.blog)
 router.post('/login',webpageController.postLogin)
+router.get('/searchProductOfBrand/:brand',webpageController.brand)
 router.get('/logout',webpageController.logout)
 router.get('/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;

@@ -21,7 +21,7 @@ block content
 								each product in products
 									tr
 										td
-											img.border.border-success.rounded-lg(src=product.pro_image, width="72",height ="72")
+											img.border.border-success.rounded-lg(src=product.pro_images[0], width="72",height ="72")
 										td
 											p(text-align='center')= product.name
 										if(product.status == true)
@@ -32,8 +32,6 @@ block content
 												p.btn.btn-danger(text-align='center') Het hang
 										td
 											a.btn.btn-primary(href="/products/"+product.id) View
-											span 
-											a.btn.btn-warning(href="/products/edits/"+product.id) Edit
 											span 
 											a.btn.btn-danger(href="/products/"+product.id+"/delete",onclick="return confirm('Bạn có muốn xoa không ?')") Delete
 							

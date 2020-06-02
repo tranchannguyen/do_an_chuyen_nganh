@@ -145,7 +145,7 @@ head
                       | Home
                       i.fas.fa-chevron-down
                   li
-                    a(href='/shop')
+                    a(href='/viewAll')
                       | Shop
                       i.fas.fa-chevron-down
                   li
@@ -171,7 +171,7 @@ head
     .home_background.parallax-window(data-parallax='scroll', data-image-src='images/shop_background.jpg')
     .home_overlay
     .home_content.d-flex.flex-column.align-items-center.justify-content-center
-      h2.home_title Smartphones &amp; Tablets
+      h2.home_title= title
   // Shop
   .shop
     .container
@@ -196,28 +196,15 @@ head
             .sidebar_section
               .sidebar_subtitle.brands_subtitle Brands
               ul.brands_list
-                li.brand
-                  a(href='#') Apple
-                li.brand
-                  a(href='#') Beoplay
-                li.brand
-                  a(href='#') Google
-                li.brand
-                  a(href='#') Meizu
-                li.brand
-                  a(href='#') OnePlus
-                li.brand
-                  a(href='#') Samsung
-                li.brand
-                  a(href='#') Sony
-                li.brand
-                  a(href='#') Xiaomi
+                each brand in brands
+                  li.brand
+                    a(href='/searchProductOfBrand/'+brand)= brand
         .col-lg-9
           // Shop Content
           .shop_content
             .shop_bar.clearfix
               .shop_product_count
-                span 186
+                span= countProduct
                 |  products found
               .shop_sorting
                 span Sort by:
@@ -237,7 +224,7 @@ head
                 .product_item.is_new
                   .product_border
                   .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                    img(src=prod.pro_image, alt='')
+                    img(src=prod.pro_images[0], alt='')
                   .product_content
                     .product_price= prod.price
                     .product_name
@@ -248,25 +235,6 @@ head
                   ul.product_marks
                     li.product_mark.product_discount -25%
                     li.product_mark.product_new new
-              // Product Item
-              .product_item.discount
-                .product_border
-                .product_image.d-flex.flex-column.align-items-center.justify-content-center
-                  img(src='../webpage/images/featured_1.png', alt='')
-                .product_content
-                  .product_price
-                    | $225
-                    span $300
-                  .product_name
-                    div
-                      a(href='#', tabindex='0') Huawei MediaPad...
-                .product_fav
-                  i.fas.fa-heart
-                ul.product_marks
-                  li.product_mark.product_discount -25%
-                  li.product_mark.product_new new
-              
-              
             // Shop Page Navigation
             .shop_page_nav.d-flex.flex-row
               .page_prev.d-flex.flex-column.align-items-center.justify-content-center

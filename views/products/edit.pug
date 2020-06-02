@@ -14,7 +14,7 @@ block content
                                     .form-group
                                         label.col-sm-2.control-label(for="avatar") Anh san pham
                                         .col-sm-1
-                                        img.border.border-success.rounded-lg(src= product.pro_image, width="194",height ="194")
+                                        img.border.border-success.rounded-lg(src= product.pro_images[0], width="194",height ="194")
                                     .form-group
                                         label.col-sm-2.control-label(for="name") Product Name 
                                         .col-sm-5
@@ -38,23 +38,9 @@ block content
                                         .col-sm-5
                                             input#quantity.form-control(type="number",name="quantity",value= product.quantity)
                                     .form-group
-                                        label.col-sm-2.control-label(for="decription") Mo ta
+                                        label.col-sm-2.control-label(for="description") Mo ta
                                         .col-sm-5
-                                            input#decription.form-control(type="text",name="decription", value = product.decription)
-                                    if(product.popular == true)
-                                        .form-group
-                                            .col-sm-offset-2.col-sm-3
-                                                .checkbox
-                                                    label
-                                                        input(type='checkbox',name="popular",value="1", checked='')
-                                                        |  Phổ biến
-                                    else
-                                        .form-group
-                                            .col-sm-offset-2.col-sm-3
-                                                .checkbox
-                                                    label
-                                                        input(type='checkbox',name="popular",value="1")
-                                                        |  Phổ biến
+                                            input#description.form-control(type="text",name="description", value = product.description)
                                     .col-sm-offset-2
                                         button.btn.btn-warning(type="submit") Save
 

@@ -15,7 +15,7 @@ module.exports.postEdit = function(req,res,next){
 	if(req.body.price==""){
 		errors.push('Price null')
 	}
-	if(req.body.decription==""){
+	if(req.body.description==""){
 		errors.push('Thiếu mô tả')
 	}
 	if(req.body.quantity==""){
