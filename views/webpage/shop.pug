@@ -226,7 +226,7 @@ head
                   .product_image.d-flex.flex-column.align-items-center.justify-content-center
                     img(src=prod.pro_images[0], alt='')
                   .product_content
-                    .product_price= prod.price
+                    .product_price= prod.price + " $"
                     .product_name
                       div
                         a(href='#', tabindex='0')= prod.name

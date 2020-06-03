@@ -24,6 +24,10 @@ block content
 											each cate in cates												
 												option(value= cate._id)= cate.name
 								.form-group
+									label.col-sm-2.control-label(for="brand") Brand
+									.col-sm-9
+										input#brand.form-control(type="text",name="brand")
+								.form-group
 									label.col-sm-2.control-label(for="price") Price
 									.col-sm-9
 										input#price.form-control(type="number",name="price")

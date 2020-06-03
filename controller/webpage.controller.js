@@ -30,8 +30,9 @@ module.exports.viewAll = async function(req,res){
    var products = await Product.find();
    let brands = []
    for(pro of products){
-      if(brands.indexOf(pro.brand))
+      if(brands.indexOf(pro.brand) <= -1) {
          brands.push(pro.brand);
+      }
    }
    let countProduct  = products.length;
    var categorys = await Category.find();
@@ -51,8 +52,8 @@ module.exports.brand = async function(req,res) {
    products = product.filter(prduct => prduct.brand == namebrand)
    let brands = []
    for(pro of product){
-      if(brands.indexOf(pro.brand))
-         brands.push(pro.brand);
+      if(brands.indexOf(pro.brand) <= -1) {
+         brands.push(pro.brand);}
    }
    let countProduct  = products.length;
    var categorys = await Category.find();
@@ -73,8 +74,8 @@ module.exports.viewProductByCateId = async function(req,res){
     let brands = []
     let countProduct  = products.length;
    for(pro of products){
-      if(brands.indexOf(pro.brand))
-         brands.push(pro.brand);
+      if(brands.indexOf(pro.brand) <= -1) {
+         brands.push(pro.brand);}
    }
     res.render('webpage/shop',{
        products: products,
