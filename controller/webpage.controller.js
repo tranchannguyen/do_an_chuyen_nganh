@@ -116,7 +116,7 @@ module.exports.viewProductByCateId = async function(req,res){
       req.body.avatar = "";
       req.body.phone = "";
       req.body.address = "";
-      req.body.status = 'OPEN';
+      req.body.status = 'IN_PROGRES';
       await UserG.insertMany(req.body);
    res.render('authG/register',{
       success : "Register success"
