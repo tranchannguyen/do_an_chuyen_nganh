@@ -1,13 +1,10 @@
 var express = require('express');
 var multer  = require('multer');
-var Product = require('../models/product.model')
 
 var productController = require('../controller/product.controller')
 var validate = require('../validate/product.validate')
-var validateb = require('../validate/editproduct.validate')
-// var authMidleware = require('../midlewares/auth.midleware.js')
 
-var upload = multer({ dest: './public/uploads/' })
+var upload = multer({ dest: './public/uploads' })
 var router = express.Router()
 
 
@@ -15,7 +12,7 @@ router.get('/',productController.index);
 // router.get('/search',productController.search);
 router.get('/create',productController.create);
 router.post('/create',
-	upload.single('pro_image'),
+upload.array('pro_images',3),
 	validate.postCreate,
 	productController.postCreate
 	);

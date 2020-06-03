@@ -24,12 +24,8 @@ block content
 											img.border.border-success.rounded-lg(src=product.pro_images[0], width="72",height ="72")
 										td
 											p(text-align='center')= product.name
-										if(product.status == true)
-											td
-												p(text-align='center')= product.quantity
-										else
-											td
-												p.btn.btn-danger(text-align='center') Het hang
+										td
+											p(text-align='center')= product.quantity
 										td
 											a.btn.btn-primary(href="/products/"+product.id) View
 											span 

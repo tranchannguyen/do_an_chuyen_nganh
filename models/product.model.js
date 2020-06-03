@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var productSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: {
-        type: String,
-        required: true
+      type:String,
+      required: true,
     },
     description: {
         type: String,
@@ -12,7 +12,7 @@ var productSchema = new mongoose.Schema({
     },
     stock: {
         type: Number,
-        required: true
+        required: false
       },
     idCate : String,
     price: {
@@ -22,8 +22,7 @@ var productSchema = new mongoose.Schema({
     quantity: Number,
     brand: String,
     pro_images: {
-        type: [String],
-        required: true
+        type: [String]
       },
     status: Boolean,
     dateAdded: {

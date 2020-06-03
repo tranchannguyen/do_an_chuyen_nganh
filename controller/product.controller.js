@@ -65,11 +65,12 @@ module.exports.get = async function(req,res){
 }
 
 module.exports.postCreate = async function(req,res){
-	req.body.images = req.file.path.split('\\').slice(1).join('/');
-	if(req.body.quantity > 0)
-	{
-		req.body.status = true;
-	}else req.body.status = false;
+	let arr = [];
+	for(let i = 0; i< req.files.length;i++){
+		await arr.push(req.files[i].path.split('\\').slice(1).join('/'))
+	}
+	req.body.pro_images = arr
+	req.body.status = true
 	console.log(req.body);
 	await Product.insertMany(req.body);
 	res.redirect('/products');

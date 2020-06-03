@@ -18,7 +18,7 @@ module.exports.postCreate = function(req,res,next){
 	if(req.body.quantity==""){
 		errors.push('Vui lòng nhập số lượng')
 	}
-	if(req.body.pro_image==""){
+	if(req.body.pro_images==""){
 		errors.push('Ảnh sản phẩm trống')
 	}
 	if(errors.length){

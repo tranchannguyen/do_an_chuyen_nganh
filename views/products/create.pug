@@ -21,10 +21,8 @@ block content
 									label.col-sm-2.control-label(for="danhmuc") Name Category
 									.col-sm-9
 										select(name="idCate", type='text')
-											each cate in cates
-												
-												option(value=cate._id)= cate.name
-											option(value='', selected='') None
+											each cate in cates												
+												option(value= cate._id)= cate.name
 								.form-group
 									label.col-sm-2.control-label(for="price") Price
 									.col-sm-9
@@ -40,6 +38,6 @@ block content
 								.form-group
 									label.col-sm-2.control-label(for="pro_images") Image 
 									.col-sm-9
-										input#pro_images.form-control-file(type="file",name="images")
+										input#pro_images.form-control-file(type="file",name="pro_images",multiple)
 								.col-sm-offset-2
 									button.btn.btn-success(type='submit') Create
