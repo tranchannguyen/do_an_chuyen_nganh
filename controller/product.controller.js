@@ -73,7 +73,6 @@ module.exports.postCreate = async function(req,res){
 	req.body.status = true
 	req.body.name = req.body.name.trim()
 	req.body.brand = req.body.brand.trim()
-	console.log(req.body);
 	await Product.insertMany(req.body);
 	res.redirect('/products');
 }

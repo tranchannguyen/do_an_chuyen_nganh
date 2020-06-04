@@ -8,9 +8,29 @@ var md5 = require('md5');
 module.exports.index = async function(req,res){
 
    var products = await Product.find();
+   var smartphone = await Product.find({idCate: "5de12f6c4c37031ee087e5da"})
+   var laptop = await Product.find({idCate: "5ed5766606854e12286197d6"})
+   var smartphonenew = smartphone.sort(function(a, b) {
+      a = new Date(a.dateAdded);
+      b = new Date(b.dateAdded);
+      return a>b ? -1 : a<b ? 1 : 0;
+  }).slice(0,20);
+   var laptopnew = laptop.sort(function(a, b) {
+      a = new Date(a.dateAdded);
+      b = new Date(b.dateAdded);
+      return a>b ? -1 : a<b ? 1 : 0;
+  }).slice(0,20);
+   var featured = products.sort(function(a, b) {
+      a = new Date(a.dateAdded);
+      b = new Date(b.dateAdded);
+      return a>b ? -1 : a<b ? 1 : 0;
+  }).slice(0,20);
+   
    var categorys = await Category.find();
    res.render('in',{
-      products: products,
+      featured:featured,
+      laptopnew:laptopnew,
+      smartphonenew: smartphonenew,
       categorys: categorys
    });
 }
