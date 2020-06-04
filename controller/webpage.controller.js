@@ -4,9 +4,9 @@ const Cart = require("../models/cart");
 const Order = require("../models/order");
 var UserG = require('../models/userG.model')
 var md5 = require('md5');
+var recentlyViewed = []
 
 module.exports.index = async function(req,res){
-
    var products = await Product.find();
    var smartphone = await Product.find({idCate: "5de12f6c4c37031ee087e5da"})
    var laptop = await Product.find({idCate: "5ed5766606854e12286197d6"})
@@ -31,7 +31,8 @@ module.exports.index = async function(req,res){
       featured:featured,
       laptopnew:laptopnew,
       smartphonenew: smartphonenew,
-      categorys: categorys
+      categorys: categorys,
+      recentlyViewed: recentlyViewed
    });
 }
 module.exports.search = async function(req,res){
@@ -91,7 +92,6 @@ module.exports.viewAll = async function(req,res){
    for(let i = 1; i<=numberpages; i++){
       arrpages.push(i)
    }
-   console.log(arrpages)
    var products = product.slice(start,end)
    let brands = []
    for(pro of products){
@@ -163,7 +163,9 @@ module.exports.viewProductByCateId = async function(req,res){
  }
  module.exports.viewProductById = async function(req,res){
     var id = req.params.id;
-    var products = await Product.findOne({_id: id});
+    var products = await Product.findOne({_id: id})
+    console.log(products)
+    recentlyViewed.push(products)
     var categorys = await Category.find();
     var catein = await Category.findOne({_id: products.idCate});
     res.render('webpage/singleProduct',{
@@ -185,7 +187,7 @@ module.exports.viewProductByCateId = async function(req,res){
 	{
 		res.redirect('/');
 		return;
-	}else console.log('not userG');
+	}else 
    res.render('authG/signin');
  }
  module.exports.postRegister  = async function(req,res){
@@ -230,7 +232,6 @@ module.exports.viewProductByCateId = async function(req,res){
  module.exports.cart = async function(req,res){
    if(req.session.cart){
       var arrayPro = Object.values(req.session.cart.items);
-      console.log(arrayPro);
       var categorys = await Category.find();
       res.render('webpage/cart',{categorys: categorys, arrayPro: arrayPro})
    }else{
