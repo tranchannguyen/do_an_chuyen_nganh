@@ -6,6 +6,7 @@ var router = express.Router()
 
 
 router.get('/',webpageController.index);
+router.get('/search',webpageController.search);
 router.get('/viewAll',webpageController.viewAll);
 router.get('/productofcategorys/:id',webpageController.viewProductByCateId);
 router.get('/viewDetailProduct/:id',webpageController.viewProductById);

@@ -75,8 +75,8 @@ head
             .header_search
               .header_search_content
                 .header_search_form_container
-                  form.header_search_form.clearfix(action='#')
-                    input.header_search_input(type='search', required='required', placeholder='Search for products...')
+                  form.header_search_form.clearfix(action='/search?'+ q)
+                    input.header_search_input(type='search',name='q', required='required', placeholder='Search for products...')
                     .custom_dropdown
                       .custom_dropdown_list
                         span.custom_dropdown_placeholder.clc All Categories

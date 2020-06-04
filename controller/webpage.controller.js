@@ -34,6 +34,39 @@ module.exports.index = async function(req,res){
       categorys: categorys
    });
 }
+module.exports.search = async function(req,res){
+   var page = parseInt(req.query.page) || 1
+   var q = req.query.q;
+   var perpage = 25
+   let start = (page - 1) * perpage;
+   let end =  page * perpage
+    
+   var product = await Product.find()
+   let numberpages = Math.ceil(parseFloat(product.length/perpage))
+   let arrpages = []
+   for(let i = 1; i<=numberpages; i++){
+      arrpages.push(i)
+   }
+   var products = product.slice(start,end).filter(function(pro){
+      return  pro.name.toLowerCase().indexOf(q.toLowerCase()) !== -1
+   })
+   let brands = []
+   for(pro of products){
+      if(brands.indexOf(pro.brand) <= -1) {
+         brands.push(pro.brand);
+      }
+   }
+   let countProduct  = products.length;
+   var categorys = await Category.find();
+   res.render('webpage/shop',{
+      products: products,
+      categorys: categorys,
+      countProduct: countProduct,
+      title: 'Search Product',
+      brands:brands,
+      arrpages:arrpages
+   });
+}
 module.exports.blog = async function(req,res) {
    var categorys = await Category.find();
    res.render('webpage/blog',{
