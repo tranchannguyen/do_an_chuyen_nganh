@@ -240,16 +240,9 @@ head
               .page_prev.d-flex.flex-column.align-items-center.justify-content-center
                 i.fas.fa-chevron-left
               ul.page_nav.d-flex.flex-row
-                li
-                  a(href='#') 1
-                li
-                  a(href='#') 2
-                li
-                  a(href='#') 3
-                li
-                  a(href='#') ...
-                li
-                  a(href='#') 21
+                each arrpage in arrpages
+                  li
+                    a(href='?page='+ arrpage)= arrpage
               .page_next.d-flex.flex-column.align-items-center.justify-content-center
                 i.fas.fa-chevron-right
   // Recently Viewed

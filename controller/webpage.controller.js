@@ -47,7 +47,19 @@ module.exports.contact = async function(req,res) {
    })
 }
 module.exports.viewAll = async function(req,res){
-   var products = await Product.find();
+   var page = parseInt(req.query.page) || 1
+   var perpage = 25
+   let start = (page - 1) * perpage;
+   let end =  page * perpage
+    
+   var product = await Product.find()
+   let numberpages = Math.ceil(parseFloat(product.length/perpage))
+   let arrpages = []
+   for(let i = 1; i<=numberpages; i++){
+      arrpages.push(i)
+   }
+   console.log(arrpages)
+   var products = product.slice(start,end)
    let brands = []
    for(pro of products){
       if(brands.indexOf(pro.brand) <= -1) {
@@ -61,8 +73,8 @@ module.exports.viewAll = async function(req,res){
       categorys: categorys,
       countProduct: countProduct,
       title: 'All Product',
-      brands:brands
-
+      brands:brands,
+      arrpages:arrpages
    });
 }
 
@@ -87,7 +99,17 @@ module.exports.brand = async function(req,res) {
 }
 module.exports.viewProductByCateId = async function(req,res){
     var id = req.params.id;
-    var products = await Product.find({idCate: id});
+    var page = parseInt(req.query.page) || 1
+    var perpage = 25
+    let start = (page - 1) * perpage;
+    let end =  page * perpage
+    var product = await Product.find({idCate: id})
+    var products = product.splice(start,end)
+    let numberpages = Math.ceil(product.length/perpage)
+    let arrpages = []
+    for(let i = 1; i<=numberpages; i++){
+       arrpages.push(i)
+    }
     var catein = await Category.findOne({_id:id});
     let title = catein.name;
     var categorys = await Category.find();
@@ -102,7 +124,8 @@ module.exports.viewProductByCateId = async function(req,res){
        categorys: categorys,
        countProduct: countProduct,
        title: title,
-       brands:brands
+       brands:brands,
+       arrpages:arrpages
     });
  }
  module.exports.viewProductById = async function(req,res){
