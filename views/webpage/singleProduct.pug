@@ -23,43 +23,19 @@ head
             .top_bar_contact_item
               .top_bar_icon
                 img(src='../webpage/images/phone.png', alt='')
-              | +38 068 005 3570
+              | +84 332569719
             .top_bar_contact_item
               .top_bar_icon
                 img(src='../webpage/images/mail.png', alt='')
-              a(href='mailto:fastsales@gmail.com') fastsales@gmail.com
+              a(href='mailto:fastsales@gmail.com') nguyentranchan1998@gmail.com
             .top_bar_content.ml-auto
-              .top_bar_menu
-                ul.standard_dropdown.top_bar_dropdown
-                  li
-                    a(href='#')
-                      | English
-                      i.fas.fa-chevron-down
-                    ul
-                      li
-                        a(href='#') Italian
-                      li
-                        a(href='#') Spanish
-                      li
-                        a(href='#') Japanese
-                  li
-                    a(href='#')
-                      | $ US dollar
-                      i.fas.fa-chevron-down
-                    ul
-                      li
-                        a(href='#') EUR Euro
-                      li
-                        a(href='#') GBP British Pound
-                      li
-                        a(href='#') JPY Japanese Yen
               .top_bar_user
                 .user_icon
                   img(src='../webpage/images/user.svg', alt='')
                 div
-                  a(href='#') Register
+                  a(href='/register') Register
                 div
-                  a(href='#') Sign in
+                  a(href='/login') Sign in
     // Header Main
     .header_main
       .container
@@ -153,54 +129,55 @@ head
                       span
                       span
                       span
-  // Single Product
-  .single_product
-    .container
-      .row
-        // Images
-        .col-lg-2.order-lg-1.order-2
-          ul.image_list
-            li(data-image= products.pro_images[0])
-              img(src= products.pro_images[0], alt='')
-            li(data-image= products.pro_images[1])
-              img(src= products.pro_images[1], alt='')
-            li(data-image= products.pro_images[2])
-              img(src= products.pro_images[2], alt='')
-        // Selected Image
-        .col-lg-5.order-lg-2.order-1
-          .image_selected
-            img(src= products.pro_images[0], alt='')
-        // Description
-        .col-lg-5.order-3
-          .product_description
-            .product_category= catein.name
-            .product_name= products.name
-            .rating_r.rating_r_4.product_rating
-              i
-              i
-              i
-              i
-              i
-            .product_text
-              p= products.description
-    
-            .order_info.d-flex.flex-row
-              form(action='#')
-                .clearfix(style='z-index: 1000;')
-                  // Product Quantity
-                  .product_quantity.clearfix
-                    span Quantity: 
-                    input#quantity_input(type='text', pattern='[0-9]*', value='1')
-                    .quantity_buttons
-                      #quantity_inc_button.quantity_inc.quantity_control
-                        i.fas.fa-chevron-up
-                      #quantity_dec_button.quantity_dec.quantity_control
-                        i.fas.fa-chevron-down
-                .product_price= products.price + " $"
-                .button_container
-                  button.button.cart_button(type='button') Add to Cart
-                  .product_fav
-                    i.fas.fa-heart
+  
+  each product in products
+    .single_product
+      .container
+        .row
+          // Images
+          .col-lg-2.order-lg-1.order-2
+            ul.image_list
+              li(data-image= product.pro_images[0])
+                img(src= product.pro_images[0], alt='')
+              li(data-image= product.pro_images[1])
+                img(src= product.pro_images[1], alt='')
+              li(data-image= product.pro_images[2])
+                img(src= product.pro_images[2], alt='')
+          // Selected Image
+          .col-lg-5.order-lg-2.order-1
+            .image_selected
+              img(src= product.pro_images[0], alt='')
+          // Description
+          .col-lg-5.order-3
+            .product_description
+              .product_category= product.name
+              .product_name= product.name
+              .rating_r.rating_r_4.product_rating
+                i
+                i
+                i
+                i
+                i
+              .product_text
+                p= product.description
+      
+              .order_info.d-flex.flex-row
+                form(action='#')
+                  .clearfix(style='z-index: 1000;')
+                    // Product Quantity
+                    .product_quantity.clearfix
+                      span Quantity: 
+                      input#quantity_input(type='text', pattern='[0-9]*', value='1')
+                      .quantity_buttons
+                        #quantity_inc_button.quantity_inc.quantity_control
+                          i.fas.fa-chevron-up
+                        #quantity_dec_button.quantity_dec.quantity_control
+                          i.fas.fa-chevron-down
+                  .product_price= product.price + " $"
+                  .button_container
+                    button.button.cart_button(type='button') Add to Cart
+                    .product_fav
+                      i.fas.fa-heart
   // Recently Viewed
   .viewed
     .container

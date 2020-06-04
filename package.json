@@ -25,8 +25,11 @@
     "mongod": "^2.0.0",
     "mongoose": "^5.7.8",
     "multer": "^1.4.2",
+    "nodemailer": "^6.4.8",
+    "passport": "^0.4.1",
     "path": "^0.12.7",
     "pug": "^2.0.4",
+    "randomstring": "^1.1.5",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
