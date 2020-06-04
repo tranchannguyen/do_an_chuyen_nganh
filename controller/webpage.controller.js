@@ -42,14 +42,14 @@ module.exports.search = async function(req,res){
    let end =  page * perpage
     
    var product = await Product.find()
-   let numberpages = Math.ceil(parseFloat(product.length/perpage))
+   var products = product.slice(start,end).filter(function(pro){
+      return  pro.name.toLowerCase().indexOf(q.toLowerCase()) !== -1
+   })
+   let numberpages = Math.ceil(parseFloat(products.length/perpage))
    let arrpages = []
    for(let i = 1; i<=numberpages; i++){
       arrpages.push(i)
    }
-   var products = product.slice(start,end).filter(function(pro){
-      return  pro.name.toLowerCase().indexOf(q.toLowerCase()) !== -1
-   })
    let brands = []
    for(pro of products){
       if(brands.indexOf(pro.brand) <= -1) {
@@ -163,9 +163,9 @@ module.exports.viewProductByCateId = async function(req,res){
  }
  module.exports.viewProductById = async function(req,res){
     var id = req.params.id;
-    var products = await Product.find({_id: id});
+    var products = await Product.findOne({_id: id});
     var categorys = await Category.find();
-    var catein = await Category.find({_id: products[0].idCate});
+    var catein = await Category.findOne({_id: products.idCate});
     res.render('webpage/singleProduct',{
        products: products,
        categorys: categorys,

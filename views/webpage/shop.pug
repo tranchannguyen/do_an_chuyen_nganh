@@ -84,16 +84,6 @@ head
                         ul.custom_list.clc
                           li
                             a.clc(href='#') All Categories
-                          li
-                            a.clc(href='#') Computers
-                          li
-                            a.clc(href='#') Laptops
-                          li
-                            a.clc(href='#') Cameras
-                          li
-                            a.clc(href='#') Hardware
-                          li
-                            a.clc(href='#') Smartphones
                     button.header_search_button.trans_300(type='submit', value='Submit')
                       img(src='../webpage/images/search.png', alt='')
           // Wishlist
@@ -229,7 +219,7 @@ head
                     .product_price= prod.price + " $"
                     .product_name
                       div
-                        a(href='#', tabindex='0')= prod.name
+                        a(href='/viewDetailProduct/'+prod._id, tabindex='0')= prod.name
                   .product_fav
                     i.fas.fa-heart
                   ul.product_marks
