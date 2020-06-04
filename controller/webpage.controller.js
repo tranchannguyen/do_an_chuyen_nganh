@@ -164,8 +164,6 @@ module.exports.viewProductByCateId = async function(req,res){
  module.exports.viewProductById = async function(req,res){
     var id = req.params.id;
     var products = await Product.findOne({_id: id})
-    console.log(products)
-    recentlyViewed.push(products)
     var categorys = await Category.find();
     var catein = await Category.findOne({_id: products.idCate});
     res.render('webpage/singleProduct',{

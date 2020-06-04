@@ -129,29 +129,27 @@ head
                       span
                       span
                       span
-  
-  each product in products
-    .single_product
+  .single_product
       .container
         .row
           // Images
           .col-lg-2.order-lg-1.order-2
             ul.image_list
-              li(data-image= product.pro_images[0])
-                img(src= product.pro_images[0], alt='')
-              li(data-image= product.pro_images[1])
-                img(src= product.pro_images[1], alt='')
-              li(data-image= product.pro_images[2])
-                img(src= product.pro_images[2], alt='')
+              li(data-image= products.pro_images[0])
+                img(src= products.pro_images[0], alt='')
+              li(data-image= products.pro_images[1])
+                img(src= products.pro_images[1], alt='')
+              li(data-image= products.pro_images[2])
+                img(src= products.pro_images[2], alt='')
           // Selected Image
           .col-lg-5.order-lg-2.order-1
             .image_selected
-              img(src= product.pro_images[0], alt='')
+              img(src= products.pro_images[0], alt='')
           // Description
           .col-lg-5.order-3
             .product_description
-              .product_category= product.name
-              .product_name= product.name
+              .product_category= products.name
+              .product_name= products.name
               .rating_r.rating_r_4.product_rating
                 i
                 i
@@ -159,7 +157,7 @@ head
                 i
                 i
               .product_text
-                p= product.description
+                p= products.description
       
               .order_info.d-flex.flex-row
                 form(action='#')
@@ -173,7 +171,7 @@ head
                           i.fas.fa-chevron-up
                         #quantity_dec_button.quantity_dec.quantity_control
                           i.fas.fa-chevron-down
-                  .product_price= product.price + " $"
+                  .product_price= products.price + " $"
                   .button_container
                     button.button.cart_button(type='button') Add to Cart
                     .product_fav
