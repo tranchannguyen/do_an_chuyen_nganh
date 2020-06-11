@@ -35,11 +35,23 @@ module.exports.postEdit = async function(req,res){
 		req.body.status = true;
 	}else req.body.status = false;
 	req.body.popular = Boolean(req.body.popular);
+	if(req.body.sales !== 0){
+		var isSales = {
+			status: true,
+			percent: req.body.sales,
+			end: new Date()}
+		}else {
+			isSales = {
+				status: false,
+				percent: req.body.sales,
+		}
+	}
 	await Product.findOneAndUpdate({_id:req.params.id},{
 		name:req.body.name,
 		price:req.body.price,
 		quantity:req.body.quantity,
 		idCate: req.body.idCate,
+		isSale: isSales,
 		description:req.body.description,
 		popular:req.body.popular,
 		status:req.body.status,
