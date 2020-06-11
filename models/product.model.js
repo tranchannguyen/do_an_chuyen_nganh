@@ -33,19 +33,27 @@ var productSchema = new mongoose.Schema({
     update_time : {
         type : Date, default: Date.now},
     buyCounts: {
-    type: Number,
-    required: false,
-    default: 0
-    },
-    viewCounts: {
-    type: Number,
-    required: false,
-    default: 0
+      type: Number,
+      required: false,
+      default: 0
     },
     rating: {
-    byUser: String,
-    content: String,
-    star: Number
+      byUser: String,
+      content: String,
+      star: Number
+    },
+    isSale: {
+      status: {
+        type: Boolean,
+        default: false
+      },
+      percent: {
+        type: Number,
+        default: 0
+      },
+      end: {
+        type: Date
+      }
     },
     comment: {
         total: {
