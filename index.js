@@ -11,8 +11,7 @@ var MongoStore = require('connect-mongo')(session);
 // var Product = require('./models/product.model')
 // var Category = require('./models/category.model')
 var app = express();
-var port = 3000;
-app.listen(port,function(){
+app.listen(process.env.PORT || 3000,function(){
    console.log('Server listening on port 3000');
    console.log('http://localhost:3000');
 });
