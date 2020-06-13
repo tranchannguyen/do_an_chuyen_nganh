@@ -25,14 +25,17 @@ module.exports.index = async function(req,res){
       b = new Date(b.dateAdded);
       return a>b ? -1 : a<b ? 1 : 0;
   }).slice(0,20);
-   
+  var productSale = (products.filter(function(pro){
+     return pro.isSale.status == true
+  })).slice(0,20)
    var categorys = await Category.find();
    res.render('in',{
       featured:featured,
       laptopnew:laptopnew,
       smartphonenew: smartphonenew,
       categorys: categorys,
-      recentlyViewed: recentlyViewed
+      recentlyViewed: recentlyViewed,
+      productSale:productSale
    });
 }
 module.exports.search = async function(req,res){

@@ -40,7 +40,11 @@ block content
                                     .form-group
                                         label.col-sm-2.control-label(for="sales") Giảm giá
                                         .col-sm-5
-                                            input#sales.form-control(type="number",name="sales",value ="")
+                                            input#sales.form-control(type="number",name="sales",value = product.isSale.percent || 0)
+                                    .form-group
+                                        label.col-sm-2.control-label(for="sales") Ngày kết thúc 
+                                        .col-sm-5
+                                            input#sales.form-control(type="datetime-local",name="endsale",value = product.isSale.end)
                                     .form-group
                                         label.col-sm-2.control-label(for="quantity") So luong
                                         .col-sm-5

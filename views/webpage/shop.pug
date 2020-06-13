@@ -187,10 +187,11 @@ head
               .product_grid_border
               // Product Item
               each prod in products
-                .product_item.is_new
+                .product_item.discount
                   .product_border
                   .product_image.d-flex.flex-column.align-items-center.justify-content-center
                     img(src=prod.pro_images[0], alt='')
+                    br
                   .product_content
                     .product_price= prod.price + " $"
                     .product_name
@@ -199,8 +200,9 @@ head
                   .product_fav
                     i.fas.fa-heart
                   ul.product_marks
-                    li.product_mark.product_discount -25%
-                    li.product_mark.product_new new
+                    if prod.isSale.status == true
+                      li.product_mark.product_discount= prod.isSale.percent + '%'
+                    
             // Shop Page Navigation
             .shop_page_nav.d-flex.flex-row
               .page_prev.d-flex.flex-column.align-items-center.justify-content-center

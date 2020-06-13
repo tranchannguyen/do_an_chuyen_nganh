@@ -2,8 +2,9 @@ var Product = require('../models/product.model');
 var Category = require('../models/category.model');
 // var shortid = require('shortid');
 module.exports.index = async function(req,res){
+	await this.updateSaleProduct();
 	var products = await Product.find();
-
+	
 	res.render('products/index',{ products: products
 	 });	
 }
@@ -39,13 +40,15 @@ module.exports.postEdit = async function(req,res){
 		var isSales = {
 			status: true,
 			percent: req.body.sales,
-			end: new Date()}
+			end: req.body.endsale}
 		}else {
 			isSales = {
 				status: false,
 				percent: req.body.sales,
+				end: null
 		}
 	}
+	console.log(req.body.endsale)
 	await Product.findOneAndUpdate({_id:req.params.id},{
 		name:req.body.name,
 		price:req.body.price,
@@ -87,4 +90,18 @@ module.exports.postCreate = async function(req,res){
 	req.body.brand = req.body.brand.trim()
 	await Product.insertMany(req.body);
 	res.redirect('/products');
+}
+updateSaleProduct = async function(req,res){
+	let product = await Product.find();
+	product.reduce(function(acc,prod){
+		if(prod.isSale.percent === 0 ){
+			var isSales = {
+				status: false,}
+				Product.findOneAndUpdate({_id: prod._id},{
+					isSale: isSales
+				})
+			}
+				
+		}
+	)
 }

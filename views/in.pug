@@ -124,9 +124,10 @@ block header
                   each feature in featured
                     .featured_slider_item
                       .border_active
-                      .product_item.discount.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                      .product_item.is_new.d-flex.flex-column.align-items-center.justify-content-center.text-center
                         .product_image.d-flex.flex-column.align-items-center.justify-content-center
                           img(src= feature.pro_images[0],width = '160px' ,height= '150px')
+                          br
                         .product_content
                           .product_price
                             span= feature.price + " $"
@@ -139,30 +140,33 @@ block header
                           i.fas.fa-heart
                         ul.product_marks
                           li.product_mark.product_new new
+                          if feature.isSale.status == true
+                            li.product_mark.product_discount= feature.isSale.percent + '%'
                   
-              //- // Product Panel
-              //- .product_panel.panel
-              //-   .featured_slider.slider
-              //-     // Slider Item
-              //-     each laptop in laptopnew
-              //-       .featured_slider_item
-              //-         .border_active
-              //-         .product_item.discount.d-flex.flex-column.align-items-center.justify-content-center.text-center
-              //-           .product_image.d-flex.flex-column.align-items-center.justify-content-center
-              //-             img(src=laptop.pro_images[0], alt='')
-              //-           .product_content
-              //-             .product_price
-              //-               span= laptop.price
-              //-             .product_name
-              //-               div
-              //-                 a(href='/viewDetailProduct/'+laptop._id)= laptop.name
-              //-             .product_extras
-              //-               button.product_cart_button Add to Cart
-              //-           .product_fav
-              //-             i.fas.fa-heart
-              //-           ul.product_marks
-              //-             li.product_mark.product_new new
-                  
+              // Product Panel
+              .product_panel.panel
+                .featured_slider.slider
+                  // Slider Item
+                  each laptop in productSale
+                    .featured_slider_item
+                      .border_active
+                      .product_item.discount.d-flex.flex-column.align-items-center.justify-content-center.text-center
+                        .product_image.d-flex.flex-column.align-items-center.justify-content-center
+                          img(src=laptop.pro_images[0], alt='')
+                        .product_content
+                          .product_price
+                            br
+                            span= laptop.price + '$'
+                          .product_name
+                            div
+                              a(href='/viewDetailProduct/'+laptop._id)= laptop.name
+                          .product_extras
+                            button.product_cart_button Add to Cart
+                        .product_fav
+                          i.fas.fa-heart
+                        ul.product_marks
+                          li.product_mark.product_new new
+                          li.product_mark.product_discount= laptop.isSale.percent + '%'
               
   // Popular Categories
   .popular_categories
