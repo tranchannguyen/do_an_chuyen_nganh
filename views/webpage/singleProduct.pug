@@ -150,12 +150,6 @@ head
             .product_description
               .product_category= products.name
               .product_name= products.name
-              .rating_r.rating_r_4.product_rating
-                i
-                i
-                i
-                i
-                i
               .product_text
                 p= products.description
       
@@ -176,6 +170,33 @@ head
                     button.button.cart_button(type='button') Add to Cart
                     .product_fav
                       i.fas.fa-heart
+          .col-lg-5.order-3
+              .tt-collapse-title 0 Đánh giá
+              div(style='display: block;')
+                .tt-review-block
+                  .tt-row-custom-02
+                    .col-item
+                      h2.tt-title
+                        
+                    .col-item
+                      a(href='#rv') Vi&#x1EBF;t m&#x1ED9;t &dstrok;&aacute;nh gi&aacute; 
+                  .tt-review-form
+                    #rv.tt-message-info Đánh giá
+                    form.form-default(method='POST')
+                      .form-group
+                        label.control-label(for='inputName') T&ecirc;n *
+                        input#inputName.form-control(type='text', name='inputName', placeholder='Enter your name')
+                      .form-group
+                        label.control-label(for='inputTitle') Ti&ecirc;u &dstrok;&#x1EC1; *
+                        input#inputEmail.form-control(type='text', name='inputTitle', placeholder='Enter title')
+                      .form-group
+                        label.control-label(for='inputContent') N&#x1ED9;i dung *
+                        input#textarea.form-control(placeholder='Enter your review', rows='8', name='inputContent')
+                      .form-group
+                        
+                      .form-group
+                        button.btn(type='submit') &Dstrok;&aacute;nh gi&aacute;
+    
   // Recently Viewed
   .viewed
     .container
